@@ -1,7 +1,23 @@
 import React from 'react';
-import shoes from './images/shoes.png';
+import shoes from '../images/shoes.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { Login, Logout, SignUp } from '../reducers/userSlice';
 
 export default function Hero() {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+
+  function handleSignUp() {
+    dispatch(
+      SignUp({
+        fullName: 'islam Elgueniari',
+        username: 'tinysmash',
+        email: 'islam.gueniari@gmail.com',
+        password: 'TinySmash2005'
+      })
+    );
+  }
+
   return (
     <React.Fragment>
       <section className="w-full h-screen relative bg-homepage-section-1 px-10 lg:px-20">
