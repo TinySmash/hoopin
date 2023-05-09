@@ -15,16 +15,28 @@
   font-family: Oswald, sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* HOMEPAGE */
 
 .bg-homepage-section-1 {
   background-image: url('./components/images/bg.png');
   background-position: center;
   background-size: cover;
+  z-index: 20;
 }
 
 .center-h {
-  position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.bg-homepage-section-2 {
+  background-image: url('./components/images/bg2.svg');
+  background-origin: content-box;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
