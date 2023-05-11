@@ -46,9 +46,35 @@ export default function Hero() {
           alt=""
         />
         <ul className="list-none w-full px-2 py-3">
-          <li className=" w-3/4 h-56 border-2 border-black mb-3 mx-auto rounded-3xl"></li>
-          <li className="w-3/4 h-56 border-2 border-black mb-3 mx-auto rounded-3xl"></li>
-          <li className=" w-3/4 h-56 border-2 border-black mb-3 mx-auto rounded-3xl"></li>
+          <li className=" w-[90%] h-56 border-2 border-black mb-6 mx-auto rounded-3xl text-center px-2 py-5 bg-nav-primary-gray backdrop-blur-md">
+            <h1 className="text-dark-yellow text-3xl font-bold mb-4">
+              Comfort
+            </h1>
+            <p>
+              Stylish and comfortable shoe designed for basketball players. Its
+              cushioned sole and innovative technology offer superior support ,
+              and a soft experience on the court
+            </p>
+          </li>
+          <li className="w-[90%] h-56 border-2 border-black mb-6 mx-auto rounded-3xl text-center px-2 py-5 bg-nav-primary-gray backdrop-blur-md">
+            <h1 className="text-dark-yellow text-3xl font-bold mb-4">Hybrid</h1>
+            <p>
+              {' '}
+              Blends elements of Kyrie Irving's signature shoe with the iconic
+              design of Kobe Bryant's shoes. This fusion results in a unique
+              shoe that offers both comfort and style for basketball players.
+            </p>
+          </li>
+          <li className=" w-[90%] h-56 border-2 border-black mb-6 mx-auto rounded-3xl text-center px-2 py-5 bg-nav-primary-gray backdrop-blur-md">
+            <h1 className="text-dark-yellow text-3xl font-bold mb-4">
+              Challenge
+            </h1>
+            <p>
+              The Nike Kyrie 3 Bruce Lee edition challenges players to raise
+              their game with its unique design and cutting-edge technology,
+              inspiring them to push their limits on the court.
+            </p>
+          </li>
         </ul>
       </section>
     </React.Fragment>
