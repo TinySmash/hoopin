@@ -25,12 +25,27 @@ body {
   background-image: url('./components/images/bg.png');
   background-position: center;
   background-size: cover;
-  z-index: 20;
+  background-repeat: no-repeat;
 }
 
 .center-h {
-  left: 50%;
-  transform: translateX(-50%);
+  @apply left-1/2 translate-x-1/2;
+}
+
+.center-v {
+  @apply top-1/2 -translate-y-1/2;
+}
+
+.uncenter-h {
+  @apply left-1/2 translate-x-1/2;
+}
+
+.md\:uncenter-h {
+  @apply left-auto translate-x-0;
+}
+
+.sm\:uncenter-h {
+  @apply left-auto translate-x-0;
 }
 
 .bg-homepage-section-2 {
