@@ -48,10 +48,31 @@ body {
   @apply left-auto translate-x-0;
 }
 
+.center-both {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .bg-homepage-section-2 {
   background-image: url('./components/images/bg2.svg');
   background-origin: content-box;
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.bg-homepage-section-4 {
+  background-image: url('./components/images/bg4.svg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+}
+
+@media (min-width: 768px) {
+  .bg-homepage-section-2 {
+    background-size: 85%;
+  }
 }
