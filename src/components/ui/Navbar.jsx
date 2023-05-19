@@ -38,7 +38,7 @@ export default function Navbar() {
       <nav className="w-3/4 sm:w-2/3 lg:w-1/2 h-4/5 flex items-center justify-start md:justify-between">
         <ul className="list-none hidden w-3/5 md:flex justify-between text-xl font-semibold mr-[5%]">
           <li>
-            <Link className="cursor-pointer">Categories</Link>
+            <Link className="cursor-pointer">Shop</Link>
           </li>
           <li>
             <Link className="cursor-pointer">Offers</Link>

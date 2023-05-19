@@ -76,3 +76,9 @@ body {
     background-size: 85%;
   }
 }
+
+/* FOOTER */
+
+.footer-element-on-hover {
+  @apply text-slate-200 ml-4;
+}

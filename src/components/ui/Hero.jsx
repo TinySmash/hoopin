@@ -118,7 +118,7 @@ export default function Hero() {
             </span>{' '}
             <br /> <span className="text-dark-yellow">+ Special offers</span>
           </h1>
-          <button className="text-3xl text-white bg-primary-blue font-bold px-4 py-3 rounded-full">
+          <button className="text-3xl text-white bg-primary-blue font-bold px-6 py-3 rounded-full">
             Explore Now
           </button>
         </div>
