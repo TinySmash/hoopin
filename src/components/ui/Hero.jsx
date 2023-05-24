@@ -38,6 +38,7 @@ export default function Hero() {
           src={shoes}
           className="absolute center-h w-[90%] sm:w-[45%] sm:right-16 top-[50%] sm:top-48 lg:top-28 sm:uncenter-h mb-8"
           alt=""
+          loading="lazy"
         />
       </section>
       <section className="bg-homepage-section-2 bg-primary-gray">
@@ -46,6 +47,7 @@ export default function Hero() {
             src={sec2}
             className="w-full mx-auto sm:w-4/6 md:w-1/2 relative md:absolute center-h md:uncenter-h md:top-auto md:right-0 mb-0 md:mb-0 "
             alt=""
+            loading="lazy"
           />
           <ul className="list-none w-full relative md:w-1/2 lg:w-2/5">
             {/* md:top-[84pex] */}
@@ -106,6 +108,7 @@ export default function Hero() {
             src={sec3}
             className="w-2/3 md:w-1/3 relative mx-auto md:mx-0 md:top-20 rounded-md"
             alt=""
+            loading="lazy"
           />
         </section>
       </section>

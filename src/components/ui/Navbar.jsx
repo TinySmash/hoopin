@@ -67,7 +67,7 @@ export default function Navbar() {
         ></Clear>
         <ul className="list-none flex flex-col w-full h-auto mt-28">
           <li className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center">
-            <Link>Shop</Link>
+            <Link to="/shop">Shop</Link>
           </li>
           <li className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center">
             <Link>Offers</Link>
@@ -85,7 +85,9 @@ export default function Navbar() {
         <nav className="w-3/4 sm:w-2/3 lg:w-1/2 h-4/5 flex items-center justify-start md:justify-between">
           <ul className="list-none hidden w-3/5 md:flex justify-between text-xl font-semibold mr-[5%]">
             <li>
-              <Link className="cursor-pointer">Shop</Link>
+              <Link className="cursor-pointer" to="/shop">
+                Shop
+              </Link>
             </li>
             <li>
               <Link className="cursor-pointer">Offers</Link>
