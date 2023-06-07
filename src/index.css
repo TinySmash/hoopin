@@ -103,3 +103,21 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
+
+/* @keyframes basketball {
+  0% {
+    transform: translateY(0px) rotateZ(0);
+  }
+  50% {
+    transform: translateY(-100px) rotateZ(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotateZ(360deg);
+  }
+}
+
+.animate-basketball {
+  animation: basketball;
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+} */
