@@ -7,7 +7,7 @@ import store from './store';
 import { Provider } from 'react-redux';
 import Loading from './components/ui/Loading';
 
-const Shop = lazy(() => import('./components/ui/Shop'));
+const Shop = lazy(() => import('./components/ui/shop/Shop'));
 
 function App() {
   return (

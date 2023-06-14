@@ -66,13 +66,22 @@ export default function Navbar() {
           onClick={toggleMenu}
         ></Clear>
         <ul className="list-none flex flex-col w-full h-auto mt-28">
-          <li className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center">
+          <li
+            className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center"
+            onClick={toggleMenu}
+          >
             <Link to="/shop">Shop</Link>
           </li>
-          <li className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center">
+          <li
+            className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center"
+            onClick={toggleMenu}
+          >
             <Link>Offers</Link>
           </li>
-          <li className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center">
+          <li
+            className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center"
+            onClick={toggleMenu}
+          >
             <Link>Support</Link>
           </li>
         </ul>
