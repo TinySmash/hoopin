@@ -26,13 +26,15 @@ export default function Shop() {
   function toggleFilter() {
     setFilterOpened(prevFilterOpened => {
       if (!prevFilterOpened) {
+        document.body.style.overflowY = 'hidden';
         filterIconRef.current.classList.replace(
           'translate-x-0',
-          'translate-x-64'
+          'filter-icon-on'
         );
       } else {
+        document.body.style.overflowY = 'auto';
         filterIconRef.current.classList.replace(
-          'translate-x-64',
+          'filter-icon-on',
           'translate-x-0'
         );
       }

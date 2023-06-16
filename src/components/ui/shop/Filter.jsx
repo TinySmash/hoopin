@@ -27,7 +27,7 @@ export default function Filter(props) {
 
   return (
     <div
-      className="w-64 fixed border-2 border-black border-l-0 md:border-t-0 h-screen bg-primary-gray z-50 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:-translate-x-0 transition-all duration-300"
+      className="w-56 sm:w-64 fixed border-2 border-black border-l-0 md:border-t-0 h-screen bg-primary-gray z-50 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:-translate-x-0 transition-all duration-300"
       ref={filterRef}
     >
       <div className="search-bar w-5/6 h-7 border border-black rounded-md mx-auto mb-6">
