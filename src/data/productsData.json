@@ -1,0 +1,162 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "category": "jerseys",
+      "name": "Los Angeles Lakers LeBron James Jersey",
+      "price": 99.99,
+      "description": "Official NBA jersey of LeBron James from the Los Angeles Lakers.",
+      "rating": 4.5,
+      "pictures": [
+        "https://images.footballfanatics.com/los-angeles-lakers/mens-fanatics-branded-lebron-james-gold-los-angeles-lakers-fast-break-replica-player-jersey-icon-edition_pi3216000_altimages_ff_3216625alt1_full.jpg?_hv=2&w=900",
+        "https://dks.scene7.com/is/image/GolfGalaxy/21NIKMNBLKRSPRPJMLAL?qlt=70&wid=600&fmt=pjpeg"
+      ],
+      "colors": ["yellow", "purple"]
+    },
+    {
+      "id": 2,
+      "category": "jerseys",
+      "name": "Golden State Warriors Stephen Curry Jersey",
+      "price": 89.99,
+      "description": "Official NBA jersey of Stephen Curry from the Golden State Warriors.",
+      "rating": 4.8,
+      "pictures": [
+        "https://images.footballfanatics.com/golden-state-warriors/unisex-nike-stephen-curry-white-golden-state-warriors-2022/23-swingman-badge-player-jersey-association-edition_pi5148000_altimages_ff_5148401-5798ce1e1461d0176d8dalt1_full.jpg?_hv=2&w=900",
+        "https://dks.scene7.com/is/image/GolfGalaxy/22NIKMNBWRRRSBLCRGSW?qlt=70&wid=600&fmt=pjpeg"
+      ],
+      "colors": ["white", "blue"]
+    },
+    {
+      "id": 3,
+      "category": "jerseys",
+      "name": "Brooklyn Nets Kevin Durant Jersey",
+      "price": 79.99,
+      "description": "Official NBA jersey of Kevin Durant from the Brooklyn Nets.",
+      "rating": 4.2,
+      "pictures": [
+        "https://fanatics.frgimages.com/brooklyn-nets/mens-jordan-brand-kevin-durant-black-brooklyn-nets-authentic-player-jersey-statement-edition_pi4765000_altimages_ff_4765324-f95a739c1672fb366f44alt1_full.jpg?_hv=2&w=900",
+        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.ebayimg.com%2Fimages%2Fg%2F3aYAAOSwBX1h40BV%2Fs-l1200.jpg&tbnid=sm4GsW51Cu7RRM&vet=10CB4QxiAoCWoXChMIoO639YHh_wIVAAAAAB0AAAAAECQ..i&imgrefurl=https%3A%2F%2Fwww.ebay.com%2Fitm%2F313835349068&docid=V12Z9c7avRe8ZM&w=985&h=1075&itg=1&q=bkn%20KD%20jersey&ved=0CB4QxiAoCWoXChMIoO639YHh_wIVAAAAAB0AAAAAECQ"
+      ],
+      "colors": ["black", "white"]
+    },
+    {
+      "id": 4,
+      "category": "basketballs",
+      "name": "Wilson Evolution Indoor Game Basketball",
+      "price": 29.99,
+      "description": "High-quality indoor basketball for professional games.",
+      "rating": 4.7,
+      "pictures": [
+        "https://cdn.shopify.com/s/files/1/0043/7420/0409/products/WilsonBasketballEnglandEVONXTOfficialGameBall2_grande.png?v=1631103919"
+      ]
+    },
+    {
+      "id": 5,
+      "category": "basketballs",
+      "name": "Spalding NBA Street Basketball",
+      "price": 19.99,
+      "description": "Durable basketball for outdoor street games.",
+      "rating": 4.3,
+      "pictures": []
+    },
+    {
+      "id": 6,
+      "category": "shoes",
+      "name": "Nike Air Jordan 1 Retro High OG",
+      "price": 199.99,
+      "description": "Classic and iconic basketball shoes with excellent performance.",
+      "rating": 4.7,
+      "pictures": []
+    },
+    {
+      "id": 7,
+      "category": "shoes",
+      "name": "Adidas Harden Vol. 5",
+      "price": 149.99,
+      "description": "Signature basketball shoes of James Harden with exceptional traction.",
+      "rating": 4.4,
+      "pictures": []
+    },
+    {
+      "id": 8,
+      "category": "shoes",
+      "name": "Under Armour Curry 8",
+      "price": 179.99,
+      "description": "Performance basketball shoes designed for Stephen Curry's playing style.",
+      "rating": 4.9,
+      "pictures": []
+    },
+    {
+      "id": 9,
+      "category": "shoes",
+      "name": "Puma Clyde All-Pro",
+      "price": 129.99,
+      "description": "Stylish and comfortable basketball shoes with responsive cushioning.",
+      "rating": 4.2,
+      "pictures": []
+    },
+    {
+      "id": 10,
+      "category": "clothes & equipment",
+      "name": "Nike Elite Crew Basketball Socks",
+      "price": 14.99,
+      "description": "High-performance basketball socks with cushioning and support.",
+      "rating": 4.5,
+      "pictures": []
+    },
+    {
+      "id": 11,
+      "category": "clothes & equipment",
+      "name": "Nike Pro HyperStrong Basketball Shorts",
+      "price": 49.99,
+      "description": "Durable and breathable basketball shorts with impact protection.",
+      "rating": 4.3,
+      "pictures": []
+    },
+    {
+      "id": 12,
+      "category": "clothes & equipment",
+      "name": "Spalding NBA Street Phantom Outdoor Basketball",
+      "price": 24.99,
+      "description": "Durable outdoor basketball with excellent grip and visibility.",
+      "rating": 4.7,
+      "pictures": []
+    },
+    {
+      "id": 13,
+      "category": "clothes & equipment",
+      "name": "Nike LeBron Witness 6 Basketball Shoes",
+      "price": 129.99,
+      "description": "Versatile basketball shoes with responsive cushioning and ankle support.",
+      "rating": 4.5,
+      "pictures": []
+    },
+    {
+      "id": 14,
+      "category": "accessories",
+      "name": "Nike Elite Basketball Arm Sleeves",
+      "price": 19.99,
+      "description": "Compression arm sleeves for basketball players with moisture-wicking fabric.",
+      "rating": 4.4,
+      "pictures": []
+    },
+    {
+      "id": 15,
+      "category": "accessories",
+      "name": "Spalding NBA Street Phantom Official Basketball",
+      "price": 29.99,
+      "description": "Official size and weight basketball for outdoor street games.",
+      "rating": 4.6,
+      "pictures": []
+    },
+    {
+      "id": 16,
+      "category": "accessories",
+      "name": "Nike Elite Versatility Basketball Crew Socks",
+      "price": 19.99,
+      "description": "Premium basketball socks with cushioning and arch support.",
+      "rating": 4.7,
+      "pictures": []
+    }
+  ]
+}

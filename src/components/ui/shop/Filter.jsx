@@ -6,28 +6,21 @@ export default function Filter(props) {
   const [initialRender, setInitialRender] = useState(true);
 
   useEffect(() => {
-    console.log(props.isOpened);
     if (initialRender) {
       setInitialRender(false);
       return; // Skip the effect on the initial render
     }
 
     if (props?.isOpened === true) {
-      filterRef.current.classList?.replace(
-        '-translate-x-full',
-        '-translate-x-0'
-      );
+      filterRef.current.classList?.remove('-translate-x-full');
     } else if (props?.isOpened === false) {
-      filterRef.current.classList?.replace(
-        '-translate-x-0',
-        '-translate-x-full'
-      );
+      filterRef.current.classList?.add('-translate-x-full');
     }
   }, [props]);
 
   return (
     <div
-      className="w-56 sm:w-64 fixed border-2 border-black border-l-0 md:border-t-0 h-screen bg-primary-gray z-50 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:-translate-x-0 transition-all duration-300"
+      className="w-56 sm:w-64 fixed md:relative border-2 border-black border-l-0 md:border-t-0 h-screen md:h-auto bg-primary-gray z-30 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:-translate-x-0 transition-all duration-300"
       ref={filterRef}
     >
       <div className="search-bar w-5/6 h-7 border border-black rounded-md mx-auto mb-6">

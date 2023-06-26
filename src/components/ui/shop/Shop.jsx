@@ -2,26 +2,15 @@ import { FilterAlt } from '@mui/icons-material';
 import React, { useRef, useState } from 'react';
 import Card from './Card';
 import Filter from './Filter';
+import productsData from '../../../data/productsData.json';
 
 export default function Shop() {
   const [filterOpened, setFilterOpened] = useState(false);
   const filterIconRef = useRef('');
   const [initialIconRender, setInitialIconRender] = useState(true);
+  const [selectedCategories, setSelectedCategories] = useState('All');
 
-  // function toggleFilter() {
-  //   setFilterOpened(!filterOpened);
-  //   if (filterOpened === false) {
-  //     filterIconRef.current.classList?.replace(
-  //       'translate-x-0',
-  //       'translate-x-64'
-  //     );
-  //   } else if (filterOpened === true) {
-  //     filterIconRef.current.classList?.replace(
-  //       'translate-x-64',
-  //       'translate-x-0'
-  //     );
-  //   }
-  // }
+  // console.log(productsData.products);
 
   function toggleFilter() {
     setFilterOpened(prevFilterOpened => {
@@ -41,11 +30,10 @@ export default function Shop() {
       return !prevFilterOpened;
     });
   }
-  console.log(filterOpened);
 
   return (
-    <>
-      <div className="w-full h-screen bg-primary-gray relative pt-20">
+    <div className="w-full h-auto min-h-screen bg-primary-gray pt-20">
+      <div className="md:flex">
         <Filter isOpened={filterOpened} />
         <div className="w-[95%] h-auto p-4  mx-auto">
           <div
@@ -56,11 +44,25 @@ export default function Shop() {
             <FilterAlt></FilterAlt>
             <h1>Filter</h1>
           </div>
-          <div className="items w-full h-auto relative flex justify-between flex-wrap">
-            <Card />
+          <div className="items w-full h-auto relative flex justify-start flex-wrap">
+            {productsData.products.map(e => {
+              if (
+                selectedCategories.includes(e?.category) ||
+                selectedCategories == 'All'
+              ) {
+                return (
+                  <Card
+                    pictures={e?.pictures}
+                    key={e?.id}
+                    name={e?.name}
+                    price={e?.price}
+                  />
+                );
+              }
+            })}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
