@@ -109,3 +109,11 @@ body::-webkit-scrollbar {
 .filter-icon-on {
   @apply translate-x-52 sm:translate-x-64;
 }
+
+.bg-shop {
+  background-image: url('./components/images/shop-bg.png');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+}

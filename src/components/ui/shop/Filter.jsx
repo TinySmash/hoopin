@@ -1,9 +1,29 @@
 import { Search } from '@mui/icons-material';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  filterProductsByCategory,
+  unfilterProductsByCategory
+} from '../../reducers/productSlice';
 
 export default function Filter(props) {
   const filterRef = useRef('');
   const [initialRender, setInitialRender] = useState(true);
+  const categoryButtonRefs = useRef([]);
+
+  const filterProducts = useSelector(state => state.Products.filterProducts);
+  const dispatch = useDispatch();
+
+  const filterByCategory = (category, index) => {
+    if (filterProducts.byCategory.categories.includes(category) == false) {
+      categoryButtonRefs.current[index]?.classList?.replace('px-5', 'px-10');
+      dispatch(filterProductsByCategory(category));
+    } else {
+      categoryButtonRefs.current[index]?.classList?.replace('px-10', 'px-5');
+      dispatch(unfilterProductsByCategory(category));
+    }
+    categoryButtonRefs.current[index]?.classList?.toggle('border-dark-yellow');
+  };
 
   useEffect(() => {
     if (initialRender) {
@@ -37,17 +57,33 @@ export default function Filter(props) {
         Categories
       </h1>
       <ul className="w-full h-auto list-none mb-6">
-        <li className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer">
+        <li
+          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
+          ref={e => (categoryButtonRefs.current[0] = e)}
+          onClick={() => filterByCategory('shoes', 0)}
+        >
           Shoes
         </li>
-        <li className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer">
+        <li
+          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
+          ref={e => (categoryButtonRefs.current[1] = e)}
+          onClick={() => filterByCategory('basketballs', 1)}
+        >
           Basketballs
         </li>
-        <li className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer">
+        <li
+          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
+          ref={e => (categoryButtonRefs.current[2] = e)}
+          onClick={() => filterByCategory('jerseys', 2)}
+        >
           Jerseys
         </li>
-        <li className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer">
-          clothes & equipement
+        <li
+          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
+          ref={e => (categoryButtonRefs.current[3] = e)}
+          onClick={() => filterByCategory('clothes & equipment', 3)}
+        >
+          clothes & equipment
         </li>
       </ul>
       <h1 className="ml-3 text-xl font-bold mb-3 text-primary-blue">Price</h1>

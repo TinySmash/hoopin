@@ -53,11 +53,13 @@
     {
       "id": 5,
       "category": "basketballs",
-      "name": "Spalding NBA Street Basketball",
+      "name": "Spalding NBA Basketball",
       "price": 19.99,
-      "description": "Durable basketball for outdoor street games.",
+      "description": "Durable basketball with fantastic grip.",
       "rating": 4.3,
-      "pictures": []
+      "pictures": [
+        "https://m.media-amazon.com/images/I/51LPoW8kMML._UL320_.jpg"
+      ]
     },
     {
       "id": 6,
@@ -66,7 +68,12 @@
       "price": 199.99,
       "description": "Classic and iconic basketball shoes with excellent performance.",
       "rating": 4.7,
-      "pictures": []
+      "pictures": [
+        "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/95e3c30f-aa7f-41a4-9959-8023fc707299/air-jordan-1-2022-lost-and-found-chicago-the-inspiration-behind-the-design.jpg",
+        "https://cdn.shopify.com/s/files/1/0271/1263/6531/products/image_1024x1024_2x_99c84dc3-589f-46be-bc72-29007af47fbf.png?v=1603029974",
+        "https://sothebys-com.brightspotcdn.com/dims4/default/5087e3c/2147483647/strip/true/crop/798x523+0+0/resize/684x448!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2F96%2F09%2F31d0cc054ba28e434db813dbd3fd%2Fdownload-27-1.jpg"
+      ],
+      "colors": ["red", "black & red", "blue"]
     },
     {
       "id": 7,
@@ -75,7 +82,9 @@
       "price": 149.99,
       "description": "Signature basketball shoes of James Harden with exceptional traction.",
       "rating": 4.4,
-      "pictures": []
+      "pictures": [
+        "https://assets.adidas.com/images/w_600,f_auto,q_auto/5578da886481421fa0bdac2c0001d7ba_9366/Harden_Vol._5_Futurenatural_Shoes_Black_FZ1070_01_standard.jpg"
+      ]
     },
     {
       "id": 8,
@@ -84,16 +93,23 @@
       "price": 179.99,
       "description": "Performance basketball shoes designed for Stephen Curry's playing style.",
       "rating": 4.9,
-      "pictures": []
+      "pictures": [
+        "https://underarmour.scene7.com/is/image/Underarmour/3024785-400_DEFAULT?rp=standard-30pad|pdpZoomDesktop&scl=0.50&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=f0f0f0&wid=1836&hei=1950&size=850,850",
+        "https://www.basketballitalia.it/72426-thickbox_default/under-armour-curry-8-ragazzo.jpg"
+      ]
     },
     {
       "id": 9,
       "category": "shoes",
-      "name": "Puma Clyde All-Pro",
+      "name": "Kyrie 3 Bruce Lee",
       "price": 129.99,
-      "description": "Stylish and comfortable basketball shoes with responsive cushioning.",
+      "description": "Stylish and comfortable basketball shoes with unique hybrid design.",
       "rating": 4.2,
-      "pictures": []
+      "pictures": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMhxIUYcaqzpctPj_-K7DcsXekpyoG0AP8HmYKbevTX-FLJ4khCoi5eFUXWI5v3pbqoCk&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6-Qn6YCivFnhF-cUNZPPaQDiLKYhIxQJ-KfG9jm8CDeWws1YBP58PbSx_fDwZ6ByoE4E&usqp=CAU",
+        "https://sneakerbardetroit.com/wp-content/uploads/2017/08/bruce-lee-nike-kyrie-3-AJ1672-700-3.jpg"
+      ]
     },
     {
       "id": 10,
@@ -102,7 +118,12 @@
       "price": 14.99,
       "description": "High-performance basketball socks with cushioning and support.",
       "rating": 4.5,
-      "pictures": []
+      "pictures": [
+        "https://static.nike.com/a/images/t_default/bnjv4y7xb8z00sme6gry/elite-mid-basketball-socks-m7MvRc.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-4WCDyyYVSAk5szpmkeSrF494rAlqtg2T3BmHulsbA70d99JE9ciLOLzFrXgML47t0gM&usqp=CAU",
+        "https://static.nike.com/a/images/t_default/ie4ltw4x4uixqcm2qv1p/elite-crew-basketball-socks-zGJxZD.png"
+      ],
+      "colors": ["black", "white", "blue"]
     },
     {
       "id": 11,
@@ -111,52 +132,62 @@
       "price": 49.99,
       "description": "Durable and breathable basketball shorts with impact protection.",
       "rating": 4.3,
-      "pictures": []
+      "pictures": [
+        "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/dgd7k2dfyasyzcfqslbg/pro-hyperstrong-mens-shorts-1xbgTF.png",
+        "https://static.nike.com/a/images/t_default/a2994502-7d47-48b5-b3a1-55c9006faa2a/pro-hyperstrong-mens-shorts-1xbgTF.png"
+      ],
+      "colors": ["white", "black"]
     },
     {
       "id": 12,
-      "category": "clothes & equipment",
+      "category": "basketballs",
       "name": "Spalding NBA Street Phantom Outdoor Basketball",
       "price": 24.99,
       "description": "Durable outdoor basketball with excellent grip and visibility.",
       "rating": 4.7,
-      "pictures": []
+      "pictures": [
+        "https://m.media-amazon.com/images/I/815rLiQJU0L.jpg",
+        "https://www.spalding.com/dw/image/v2/ABAH_PRD/on/demandware.static/-/Sites-masterCatalog_SPALDING/default/dw8e9e83c2/images/hi-res/84435__LIFESTYLE.jpg?sw=555&sh=689&sm=cut&sfrm=jpg"
+      ]
     },
     {
       "id": 13,
-      "category": "clothes & equipment",
+      "category": "shoes",
       "name": "Nike LeBron Witness 6 Basketball Shoes",
       "price": 129.99,
       "description": "Versatile basketball shoes with responsive cushioning and ankle support.",
       "rating": 4.5,
-      "pictures": []
+      "pictures": [
+        "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1c8aba1a-b539-4a9a-adc5-fb8ca2b614ca/lebron-witness-6-basketball-shoes-ZW0zn5.png",
+        "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/397ab76c-8341-4b05-88e3-765046d9286e/lebron-witness-6-team-basketball-shoes-d6BdZB.png"
+      ],
+      "colors": ["black", "white"]
     },
     {
       "id": 14,
-      "category": "accessories",
+      "category": "clothes & equipment",
       "name": "Nike Elite Basketball Arm Sleeves",
       "price": 19.99,
       "description": "Compression arm sleeves for basketball players with moisture-wicking fabric.",
       "rating": 4.4,
-      "pictures": []
+      "pictures": [
+        "https://static.nike.com/a/images/t_default/fm47zjuiyxga35lu2daq/pro-elite-2-kids-sleeves-3VrlVt.png",
+        "https://static.nike.com/a/images/t_default/teghm1vfzz3qf1s5nu7y/pro-elite-2-kids-sleeves-3VrlVt.png"
+      ],
+      "colors": ["black", "white"]
     },
     {
       "id": 15,
-      "category": "accessories",
-      "name": "Spalding NBA Street Phantom Official Basketball",
+      "category": "clothes & equipment",
+      "name": "Nike NBA Basketball Headband",
       "price": 29.99,
-      "description": "Official size and weight basketball for outdoor street games.",
+      "description": "NBA Headband in two colors presented by Nike, provides both comfort and agressive athletic look for basketball .",
       "rating": 4.6,
-      "pictures": []
-    },
-    {
-      "id": 16,
-      "category": "accessories",
-      "name": "Nike Elite Versatility Basketball Crew Socks",
-      "price": 19.99,
-      "description": "Premium basketball socks with cushioning and arch support.",
-      "rating": 4.7,
-      "pictures": []
+      "pictures": [
+        "https://images.footballfanatics.com/nike-white-nba-headband_pi2694000_ff_2694897_full.jpg?_hv=2",
+        "https://bfe.com.au/wp-content/uploads/2018/06/NKN02001OS.png"
+      ],
+      "colors": ["white", "black"]
     }
   ]
 }

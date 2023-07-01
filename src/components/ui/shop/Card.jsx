@@ -8,14 +8,15 @@ import React, { useState } from 'react';
 export default function Card(props) {
   const [favProduct, setFavProduct] = useState(false);
 
-  const { pictures, name, price } = props;
+  const { primaryPicture, name, price } = props;
 
   return (
-    <div className="w-32 h-48 md:w-40 md:h-56 border-2 border-black rounded-lg px-2 pt-3 pb-1 cursor-pointer mb-4 mr-3 overflow-hidden">
+    <div className="w-32 h-48 md:w-40 md:h-56 bg-primary-gray border-2 border-black rounded-lg px-2 pt-3 pb-1 cursor-pointer mb-4 mr-3 overflow-hidden">
       <img
-        src={pictures?.[0]}
+        src={primaryPicture}
         alt=""
         className="border border-black w-full h-[70%] rounded-md"
+        loading="lazy"
       />
       <label className="text-sm font-semibold mb-2 whitespace-nowrap text-ellipsis overflow-hidden">
         {name}
