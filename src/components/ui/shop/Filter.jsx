@@ -1,10 +1,13 @@
-import { Search } from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterProductsByCategory,
-  unfilterProductsByCategory
+  unfilterProductsByCategory,
+  filterBySearchInput,
+  unfilterBySearchInput
 } from '../../reducers/productSlice';
+import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 
 export default function Filter(props) {
   const filterRef = useRef('');
@@ -13,6 +16,8 @@ export default function Filter(props) {
 
   const filterProducts = useSelector(state => state.Products.filterProducts);
   const dispatch = useDispatch();
+
+  //   FILTER BY CATEGORY
 
   const filterByCategory = (category, index) => {
     if (filterProducts.byCategory.categories.includes(category) == false) {
@@ -23,6 +28,31 @@ export default function Filter(props) {
       dispatch(unfilterProductsByCategory(category));
     }
     categoryButtonRefs.current[index]?.classList?.toggle('border-dark-yellow');
+  };
+
+  // FILTER BY SEARCH INPUT
+
+  const [searchInput, setSearchInput] = useState('');
+
+  let inputValue = '';
+
+  const filterBySearch = e => {
+    inputValue = e.target.value;
+    setSearchInput(e.target.value);
+    if (inputValue !== '') {
+      dispatch(filterBySearchInput(inputValue));
+    } else if (inputValue == '') {
+      dispatch(unfilterBySearchInput());
+    }
+  };
+
+  const searchInputRef = useRef('');
+
+  const clearSearchInput = () => {
+    searchInputRef.current.value = '';
+    setSearchInput('');
+    inputValue = '';
+    dispatch(unfilterBySearchInput());
   };
 
   useEffect(() => {
@@ -48,10 +78,18 @@ export default function Filter(props) {
           type="text"
           className="w-5/6 h-full active:outline-none outline-none bg-transparent p-1"
           placeholder="search product name"
+          ref={searchInputRef}
+          value={searchInput}
+          onChange={e => filterBySearch(e)}
         />
-        <button className="w-1/6 h-full bg-transparent cursor-pointer">
-          <Search sx={{ fontSize: 23 }}></Search>
-        </button>
+        {searchInput !== '' ? (
+          <button
+            className="w-1/6 h-full bg-transparent cursor-pointer outline-none"
+            onClick={clearSearchInput}
+          >
+            <Cancel sx={{ fontSize: 20, color: 'gray' }}></Cancel>
+          </button>
+        ) : null}
       </div>
       <h1 className="ml-3 text-xl font-bold mb-3 text-primary-blue">
         Categories

@@ -13,7 +13,11 @@ const productsSlice = createSlice({
         min: 0,
         max: 9999999
       },
-      sorted: 'BY_ID'
+      sorted: 'BY_ID',
+      bySearchInput: {
+        enabled: false,
+        input: ''
+      }
     },
     likedProducts: [],
     specialOffers: []
@@ -54,6 +58,18 @@ const productsSlice = createSlice({
         state.filterProducts.byCategory.enabled = false;
         state.filterProducts.byCategory.categories = ['All'];
       }
+    },
+    filterBySearchInput(state, action) {
+      if (state.filterProducts.bySearchInput.enabled == false) {
+        state.filterProducts.bySearchInput.enabled = true;
+        state.filterProducts.bySearchInput.input = action.payload;
+      } else {
+        state.filterProducts.bySearchInput.input = action.payload;
+      }
+    },
+    unfilterBySearchInput(state, action) {
+      state.filterProducts.bySearchInput.enabled = false;
+      state.filterProducts.bySearchInput.input = '';
     }
   }
 });
@@ -64,6 +80,8 @@ export const {
   addProductToLiked,
   removeProductFromLiked,
   filterProductsByCategory,
-  unfilterProductsByCategory
+  unfilterProductsByCategory,
+  filterBySearchInput,
+  unfilterBySearchInput
 } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
