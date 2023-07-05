@@ -21,6 +21,7 @@ export default function Card(props) {
       <label className="text-sm font-semibold mb-2 whitespace-nowrap text-ellipsis overflow-hidden">
         {name}
       </label>
+      <h2 className="absolute mt-2">{price}$</h2>
       <div className="w-full h-max flex justify-end mt-1">
         <Favorite
           sx={{ color: favProduct ? 'red' : 'gray', marginRight: '6px' }}

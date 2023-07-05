@@ -70,6 +70,17 @@ const productsSlice = createSlice({
     unfilterBySearchInput(state, action) {
       state.filterProducts.bySearchInput.enabled = false;
       state.filterProducts.bySearchInput.input = '';
+    },
+    filterByPriceRange(state, action) {
+      if (action.payload.min !== '' || action.payload.max !== '') {
+        state.filterProducts.priceRange.enabled = true;
+        state.filterProducts.priceRange.min = action.payload.min;
+        state.filterProducts.priceRange.max = action.payload.max;
+      } else {
+        state.filterProducts.priceRange.enabled = false;
+        state.filterProducts.priceRange.min = 0;
+        state.filterProducts.priceRange.max = 9999999;
+      }
     }
   }
 });
@@ -82,6 +93,7 @@ export const {
   filterProductsByCategory,
   unfilterProductsByCategory,
   filterBySearchInput,
-  unfilterBySearchInput
+  unfilterBySearchInput,
+  filterByPriceRange
 } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;

@@ -5,7 +5,8 @@ import {
   filterProductsByCategory,
   unfilterProductsByCategory,
   filterBySearchInput,
-  unfilterBySearchInput
+  unfilterBySearchInput,
+  filterByPriceRange
 } from '../../reducers/productSlice';
 import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 
@@ -53,6 +54,35 @@ export default function Filter(props) {
     setSearchInput('');
     inputValue = '';
     dispatch(unfilterBySearchInput());
+  };
+
+  //  FILTER BY PRICE RANGE
+
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 9999999 });
+
+  const filterByPrice = (e, pole) => {
+    const priceInputValue = e.target.value;
+    if (pole == 'min') {
+      if (priceInputValue == '') {
+        setPriceRange({ ...priceRange, min: 0 });
+        dispatch(filterByPriceRange({ min: 0, max: priceRange.max }));
+      } else {
+        setPriceRange({ ...priceRange, min: priceInputValue });
+        dispatch(
+          filterByPriceRange({ min: priceInputValue, max: priceRange.max })
+        );
+      }
+    } else if ((pole = 'max')) {
+      if (priceInputValue == '') {
+        setPriceRange({ ...priceRange, max: 9999999 });
+        dispatch(filterByPriceRange({ min: priceRange.min, max: 9999999 }));
+      } else {
+        setPriceRange({ ...priceRange, max: priceInputValue });
+        dispatch(
+          filterByPriceRange({ min: priceRange.min, max: priceInputValue })
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -130,11 +160,13 @@ export default function Filter(props) {
           type="text"
           className="w-24 h-auto border border-black bg-transparent px-2 placeholder:text-neutral-600 outline-none rounded-md"
           placeholder="min"
+          onChange={e => filterByPrice(e, 'min')}
         />
         <input
           type="text"
           className="w-24 h-auto border border-black bg-transparent px-2 placeholder:text-neutral-600 outline-none rounded-md"
           placeholder="max"
+          onChange={e => filterByPrice(e, 'max')}
         />
       </div>
       <h1 className="ml-3 text-xl font-bold mb-3 text-primary-blue">Sort by</h1>

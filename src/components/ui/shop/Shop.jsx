@@ -11,12 +11,20 @@ export default function Shop() {
   const [initialIconRender, setInitialIconRender] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState(['All']);
   const [searchInput, setSearchInput] = useState('');
+  const [priceR, setPriceR] = useState({
+    enabled: false,
+    min: 0,
+    max: 9999999
+  });
 
   const filterCategories = useSelector(
     state => state.Products.filterProducts.byCategory.categories
   );
   const filterSearchInput = useSelector(
     state => state.Products.filterProducts.bySearchInput
+  );
+  const filterPriceRange = useSelector(
+    state => state.Products.filterProducts.priceRange
   );
 
   function toggleFilter() {
@@ -41,7 +49,8 @@ export default function Shop() {
   useEffect(() => {
     setSelectedCategories(filterCategories);
     setSearchInput(filterSearchInput.input);
-  }, [filterCategories, filterSearchInput.input]);
+    setPriceR(filterPriceRange);
+  }, [filterCategories, filterSearchInput.input, filterPriceRange]);
 
   return (
     <div className="w-full h-auto min-h-screen bg-primary-gray pt-20 bg-shop">
@@ -59,10 +68,13 @@ export default function Shop() {
           <div className="items w-full h-auto relative flex justify-start flex-wrap">
             {productsData.products.map(e => {
               if (
-                (selectedCategories.includes(e?.category) ||
+                ((selectedCategories.includes(e?.category) ||
                   selectedCategories.includes('All')) &&
-                (e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-                  filterSearchInput.enabled == false)
+                  (e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    filterSearchInput.enabled == false) &&
+                  e.price > priceR.min &&
+                  e.price < priceR.max) ||
+                priceR.enabled == false
               ) {
                 return (
                   <Card
