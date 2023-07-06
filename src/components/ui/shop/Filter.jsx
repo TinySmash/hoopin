@@ -6,7 +6,8 @@ import {
   unfilterProductsByCategory,
   filterBySearchInput,
   unfilterBySearchInput,
-  filterByPriceRange
+  filterByPriceRange,
+  sortBy
 } from '../../reducers/productSlice';
 import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 
@@ -83,6 +84,12 @@ export default function Filter(props) {
         );
       }
     }
+  };
+
+  //   SORT BY
+
+  const sortItems = by => {
+    dispatch(sortBy(by));
   };
 
   useEffect(() => {
@@ -170,13 +177,15 @@ export default function Filter(props) {
         />
       </div>
       <h1 className="ml-3 text-xl font-bold mb-3 text-primary-blue">Sort by</h1>
-      <select className="text-center w-full h-auto bg-transparent outline-none border border-black rounded-md">
-        <option className="active:bg-black" value="option1">
-          Alphabet
-        </option>
-        <option value="option2">highest Price</option>
-        <option value="option3">Lowest Price</option>
-        <option value="option4">Rating</option>
+      <select
+        className="text-center w-full h-auto bg-transparent outline-none border border-black rounded-md"
+        onChange={e => sortItems(e.target.value)}
+      >
+        <option value="BY_ID">None</option>
+        <option value="BY_ALPHABET">Alphabet</option>
+        <option value="BY_HIGHEST_PRICE">highest Price</option>
+        <option value="BY_LOWEST_PRICE">Lowest Price</option>
+        <option value="BY_RATING">Rating</option>
       </select>
     </div>
   );

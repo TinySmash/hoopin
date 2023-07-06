@@ -81,6 +81,9 @@ const productsSlice = createSlice({
         state.filterProducts.priceRange.min = 0;
         state.filterProducts.priceRange.max = 9999999;
       }
+    },
+    sortBy(state, action) {
+      state.filterProducts.sorted = action.payload;
     }
   }
 });
@@ -94,6 +97,7 @@ export const {
   unfilterProductsByCategory,
   filterBySearchInput,
   unfilterBySearchInput,
-  filterByPriceRange
+  filterByPriceRange,
+  sortBy
 } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
