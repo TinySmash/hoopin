@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import Loading from './components/ui/Loading';
 
 const Shop = lazy(() => import('./components/ui/shop/Shop'));
+const SelectedItem = lazy(() => import('./components/ui/shop/SelectedItem'));
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Hero />}></Route>
               <Route exact path="/shop" element={<Shop />}></Route>
+              <Route path="/shop/item-number-/:id" element={<SelectedItem/>}></Route>
             </Routes>
             <Footer />
           </Suspense>

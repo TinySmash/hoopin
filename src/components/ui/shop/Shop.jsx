@@ -4,6 +4,7 @@ import Card from './Card';
 import Filter from './Filter';
 import productsData from '../../../data/productsData.json';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Shop() {
   const [filterOpened, setFilterOpened] = useState(false);
@@ -77,16 +78,23 @@ export default function Shop() {
           </div>
           <div className="items w-full h-auto relative flex justify-start flex-wrap">
             {productsData.products
-              .filter(e => {
-                return (
-                  ((selectedCategories.includes(e.category) ||
-                    selectedCategories.includes('All')) &&
-                    (e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-                      !filterSearchInput.enabled) &&
-                    e.price > priceR.min &&
-                    e.price < priceR.max) ||
-                  !priceR.enabled
-                );
+              .filter(product => {
+                const selectedCategoriesIncludeAll =
+                  filterCategories.includes('All');
+                const isInSelectedCategories = selectedCategoriesIncludeAll
+                  ? true
+                  : filterCategories.includes(product.category);
+                const isInSearch =
+                  product.name
+                    .toLowerCase()
+                    .includes(filterSearchInput.input.toLowerCase()) ||
+                  !filterSearchInput.enabled;
+                const isInPriceRange =
+                  !filterPriceRange.enabled ||
+                  (product.price > filterPriceRange.min &&
+                    product.price < filterPriceRange.max);
+
+                return isInSelectedCategories && isInSearch && isInPriceRange;
               })
               .sort((a, b) => {
                 switch (sortingMethod) {
@@ -105,22 +113,17 @@ export default function Shop() {
                 }
               })
               .map(e => {
-                // if (
-                //   ((selectedCategories.includes(e?.category) ||
-                //     selectedCategories.includes('All')) &&
-                //     (e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-                //       filterSearchInput.enabled == false) &&
-                //     e.price > priceR.min &&
-                //     e.price < priceR.max) ||
-                //   priceR.enabled == false
-                // ) {
                 return (
+                  <Link to={`/shop/item-number-/${e.id}`}>
                   <Card
                     primaryPicture={e?.pictures?.[0]}
                     key={e?.id}
                     name={e?.name}
                     price={e?.price}
+                    description={e?.description}
+
                   />
+                  </Link>
                 );
               })}
           </div>
