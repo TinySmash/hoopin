@@ -2,23 +2,10 @@ import React from 'react';
 import shoes from '../images/shoes.png';
 import sec2 from '../images/sec2.png';
 import sec3 from '../images/sec3.png';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Login, Logout, SignUp } from '../reducers/userSlice';
+
 
 export default function Hero() {
-  // const dispatch = useDispatch();
-  // const user = useSelector(state => state.user);
 
-  // function handleSignUp() {
-  //   dispatch(
-  //     SignUp({
-  //       fullName: 'islam Elgueniari',
-  //       username: 'tinysmash',
-  //       email: 'islam.gueniari@gmail.com',
-  //       password: 'TinySmash2005'
-  //     })
-  //   );
-  // }
 
   return (
     <React.Fragment>

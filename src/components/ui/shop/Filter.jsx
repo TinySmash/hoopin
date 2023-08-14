@@ -10,7 +10,6 @@ import {
   sortBy
 } from '../../reducers/productSlice';
 
-
 export default function Filter(props) {
   const filterRef = useRef('');
   const [initialRender, setInitialRender] = useState(true);
@@ -22,7 +21,7 @@ export default function Filter(props) {
   //   FILTER BY CATEGORY
 
   const filterByCategory = (category, index) => {
-    console.log('filter by category function done ')
+    console.log('filter by category function done ');
     if (filterProducts.byCategory.categories.includes(category) == false) {
       categoryButtonRefs.current[index]?.classList?.replace('px-5', 'px-10');
       dispatch(filterProductsByCategory(category));
@@ -40,7 +39,7 @@ export default function Filter(props) {
   let inputValue = '';
 
   const filterBySearch = e => {
-    console.log('filter by search function done ')
+    console.log('filter by search function done ');
     inputValue = e.target.value;
     setSearchInput(e.target.value);
     if (inputValue !== '') {
@@ -64,7 +63,7 @@ export default function Filter(props) {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 9999999 });
 
   const filterByPrice = (e, pole) => {
-    console.log('filter by price function done ')
+    console.log('filter by price function done ');
     const priceInputValue = e.target.value;
     if (pole == 'min') {
       if (priceInputValue == '') {
@@ -92,7 +91,7 @@ export default function Filter(props) {
   //   SORT BY
 
   const sortItems = by => {
-    console.log('filter by sorting method function done ')
+    console.log('filter by sorting method function done ');
     dispatch(sortBy(by));
   };
 

@@ -20,7 +20,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Hero />}></Route>
               <Route exact path="/shop" element={<Shop />}></Route>
-              <Route path="/shop/item-number-/:id" element={<SelectedItem/>}></Route>
+              <Route path="/shop/product-/:id" element={<SelectedItem/>}></Route>
             </Routes>
             <Footer />
           </Suspense>

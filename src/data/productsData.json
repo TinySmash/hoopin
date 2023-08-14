@@ -9,9 +9,10 @@
       "rating": 4.5,
       "pictures": [
         "https://images.footballfanatics.com/los-angeles-lakers/mens-fanatics-branded-lebron-james-gold-los-angeles-lakers-fast-break-replica-player-jersey-icon-edition_pi3216000_altimages_ff_3216625alt1_full.jpg?_hv=2&w=900",
-        "https://dks.scene7.com/is/image/GolfGalaxy/21NIKMNBLKRSPRPJMLAL?qlt=70&wid=600&fmt=pjpeg"
+        "https://dks.scene7.com/is/image/GolfGalaxy/21NIKMNBLKRSPRPJMLAL?qlt=70&wid=600&fmt=pjpeg",
+        "https://lakersstore.com/cdn/shop/products/WhiteLakersJerseyFrontJames_65028160-284f-4bac-ac73-f76021cdc4d2_1800x1800.png?v=1632193474"
       ],
-      "colors": ["yellow", "purple"]
+      "colors": ["yellow", "purple", "white"]
     },
     {
       "id": 2,
@@ -22,9 +23,11 @@
       "rating": 4.8,
       "pictures": [
         "https://images.footballfanatics.com/golden-state-warriors/unisex-nike-stephen-curry-white-golden-state-warriors-2022/23-swingman-badge-player-jersey-association-edition_pi5148000_altimages_ff_5148401-5798ce1e1461d0176d8dalt1_full.jpg?_hv=2&w=900",
-        "https://dks.scene7.com/is/image/GolfGalaxy/22NIKMNBWRRRSBLCRGSW?qlt=70&wid=600&fmt=pjpeg"
+        "https://dks.scene7.com/is/image/GolfGalaxy/22NIKMNBWRRRSBLCRGSW?qlt=70&wid=600&fmt=pjpeg",
+        "https://images.footballfanatics.com/golden-state-warriors/youth-nike-stephen-curry-black-golden-state-warriors-2021/22-swingman-jersey-city-edition_pi4498000_altimages_ff_4498249-d2e80cd0cb6fa549db43alt1_full.jpg?_hv=2&w=900",
+        "https://images.footballfanatics.com/golden-state-warriors/golden-state-warriors-nike-association-edition-swingman-jersey-white-stephen-curry-unisex_ss4_p-13348801+pv-2+u-5k7hzqykx13ib75dknin+v-b15985a4e715401592bd9458c9751dd6.jpg?_hv=2&w=900"
       ],
-      "colors": ["white", "blue"]
+      "colors": ["white", "blue", "black"]
     },
     {
       "id": 3,
@@ -35,7 +38,7 @@
       "rating": 4.2,
       "pictures": [
         "https://fanatics.frgimages.com/brooklyn-nets/mens-jordan-brand-kevin-durant-black-brooklyn-nets-authentic-player-jersey-statement-edition_pi4765000_altimages_ff_4765324-f95a739c1672fb366f44alt1_full.jpg?_hv=2&w=900",
-        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.ebayimg.com%2Fimages%2Fg%2F3aYAAOSwBX1h40BV%2Fs-l1200.jpg&tbnid=sm4GsW51Cu7RRM&vet=10CB4QxiAoCWoXChMIoO639YHh_wIVAAAAAB0AAAAAECQ..i&imgrefurl=https%3A%2F%2Fwww.ebay.com%2Fitm%2F313835349068&docid=V12Z9c7avRe8ZM&w=985&h=1075&itg=1&q=bkn%20KD%20jersey&ved=0CB4QxiAoCWoXChMIoO639YHh_wIVAAAAAB0AAAAAECQ"
+        "https://kiwijerseyco.com/cdn/shop/products/wkd_1800x1800_99b30c77-d7dd-4f07-ad7d-b52ce54b88de_1200x1200.webp?v=1657020823"
       ],
       "colors": ["black", "white"]
     },
@@ -96,7 +99,8 @@
       "pictures": [
         "https://underarmour.scene7.com/is/image/Underarmour/3024785-400_DEFAULT?rp=standard-30pad|pdpZoomDesktop&scl=0.50&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=f0f0f0&wid=1836&hei=1950&size=850,850",
         "https://www.basketballitalia.it/72426-thickbox_default/under-armour-curry-8-ragazzo.jpg"
-      ]
+      ],
+      "colors": ["blue", "black"]
     },
     {
       "id": 9,
@@ -131,7 +135,7 @@
       "name": "Nike Pro HyperStrong Basketball Shorts",
       "price": 49.99,
       "description": "Durable and breathable basketball shorts with impact protection.",
-      "rating": 4.3,
+      "rating": 3.6,
       "pictures": [
         "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/dgd7k2dfyasyzcfqslbg/pro-hyperstrong-mens-shorts-1xbgTF.png",
         "https://static.nike.com/a/images/t_default/a2994502-7d47-48b5-b3a1-55c9006faa2a/pro-hyperstrong-mens-shorts-1xbgTF.png"

@@ -117,3 +117,21 @@ body::-webkit-scrollbar {
   background-repeat: no-repeat;
   background-origin: border-box;
 }
+
+/* PRODUCT PAGE */
+
+.bg-product-page {
+  background-image: url('./components/images/ProductPage.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* position: center bottom; */
+  @apply bg-primary-gray;
+}
+
+.shadow-inner-lg {
+  box-shadow: inset 0 8px 8px 0 rgb(0 0 0 / 0.05);
+}
+
+.bg-black-and-red {
+  background: linear-gradient(90deg, black 50%, gray 1%, rgb(239, 68, 68) 49%);
+}

@@ -69,7 +69,7 @@ export default function Shop() {
         <Filter isOpened={filterOpened} />
         <div className="w-[95%] h-auto p-4  mx-auto">
           <div
-            className="flex cursor-pointer mb-5 md:hidden translate-x-0 transition-all duration-300"
+            className="w-fit flex cursor-pointer mb-5 md:hidden translate-x-0 transition-all duration-300"
             onClick={toggleFilter}
             ref={filterIconRef}
           >
@@ -114,15 +114,13 @@ export default function Shop() {
               })
               .map(e => {
                 return (
-                  <Link to={`/shop/item-number-/${e.id}`}>
-                  <Card
-                    primaryPicture={e?.pictures?.[0]}
-                    key={e?.id}
-                    name={e?.name}
-                    price={e?.price}
-                    description={e?.description}
-
-                  />
+                  <Link to={`/shop/product-/${e.id}`}>
+                    <Card
+                      primaryPicture={e?.pictures?.[0]}
+                      key={e?.id}
+                      name={e?.name}
+                      price={e?.price}
+                    />
                   </Link>
                 );
               })}
