@@ -11,7 +11,7 @@ export default function Hero() {
     <React.Fragment>
       <section className="w-full h-screen relative bg-homepage-section-1 px-7 sm:px-10 lg:px-20">
         <div className="absolute center-h md:uncenter-h w-4/5 sm:w-auto top-28 sm:top-48 mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 md:mb-6 ">
+          <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-3 md:mb-6 ">
             Explore The New Kyrie 3
           </h1>
           <h1 className="text-5xl lg:text-[4.25rem] font-bold text-primary-blue mb-4 md:mb-10">

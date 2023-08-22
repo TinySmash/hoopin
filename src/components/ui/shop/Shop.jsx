@@ -67,7 +67,7 @@ export default function Shop() {
     <div className="w-full h-auto min-h-screen bg-primary-gray pt-20 bg-shop">
       <div className="md:flex">
         <Filter isOpened={filterOpened} />
-        <div className="w-[95%] h-auto p-4  mx-auto">
+        <div className="w-[95%] h-auto p-4 mx-auto">
           <div
             className="w-fit flex cursor-pointer mb-5 md:hidden translate-x-0 transition-all duration-300"
             onClick={toggleFilter}
@@ -76,7 +76,7 @@ export default function Shop() {
             <FilterAlt></FilterAlt>
             <h1>Filter</h1>
           </div>
-          <div className="items w-full h-auto relative flex justify-start flex-wrap">
+          <div className="items w-fit h-auto relative flex justify-center sm:justify-start flex-wrap">
             {productsData.products
               .filter(product => {
                 const selectedCategoriesIncludeAll =
