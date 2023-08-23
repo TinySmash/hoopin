@@ -122,10 +122,15 @@ export default function SelectedItem() {
       setUserActions({
         ...userActions,
         productImages: resetImages,
+        pickedColor: index, // Update pickedColor along with resetting images
+      });
+    } else {
+      pickProductPicture(userActions?.productImages[index]);
+      setUserActions({
+        ...userActions,
+        pickedColor: index,
       });
     }
-    pickProductPicture(userActions?.productImages[index]);
-    setUserActions({ ...userActions, pickedColor: index });
   };
 
   return (
