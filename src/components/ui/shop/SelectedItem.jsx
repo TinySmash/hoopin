@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import productsData from "../../../data/productsData.json";
 import { Rating } from "@mui/material";
 
 export default function SelectedItem() {
   const { id } = useParams();
-
+  const navigate = useNavigate()
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
   const [userActions, setUserActions] = useState({
     productImages: [],
@@ -40,6 +40,13 @@ export default function SelectedItem() {
     const product = productsData.products.find(
       (product) => product.id === parseInt(id)
     );
+
+    if (!product) {
+      // Product not found, navigate to PageNotFound route
+      navigate("/notFound")
+      return;
+    }
+
     setCurrentProduct(product);
     const newSize = product?.category === "jerseys" ? "M" : 8;
     const newSizeUnit =
@@ -102,36 +109,53 @@ export default function SelectedItem() {
     [array[index1], array[index2]] = [array[index2], array[index1]];
   };
 
-  const pickProductPicture = (pic) => {
-    if (pic === currentProduct?.pictures?.[0]) {
-      let resetImages = [...currentProduct?.pictures];
-      setUserActions({
-        ...userActions,
-        productImages: resetImages,
-      });
-    }
+  // const pickProductPicture = (pic) => {
+  //   if (pic === currentProduct?.pictures?.[0]) {
+  //     let resetImages = [...currentProduct?.pictures];
+  //     setUserActions({
+  //       ...userActions,
+  //       productImages: resetImages,
+  //     });
+  //   }
+  //     let newProductImages = userActions?.productImages;
+  //     swapElements(newProductImages, 0, userActions.productImages.indexOf(pic));
+  //     setUserActions({ ...userActions, productImages: newProductImages });
 
-    let newProductImages = userActions?.productImages;
-    swapElements(newProductImages, 0, userActions.productImages.indexOf(pic));
-    setUserActions({ ...userActions, productImages: newProductImages });
-  };
+  // };
 
-  const pickProductColor = (index) => {
-    if (index === 0) {
-      let resetImages = [...currentProduct?.pictures];
-      setUserActions({
-        ...userActions,
-        productImages: resetImages,
-        pickedColor: index, // Update pickedColor along with resetting images
-      });
+  // const pickProductColor = (index) => {
+  //   if (index === 0) {
+  //     let resetImages = [...currentProduct?.pictures];
+  //     setUserActions({
+  //       ...userActions,
+  //       productImages: resetImages,
+  //       pickedColor: index, // Update pickedColor along with resetting images
+  //     });
+  //   } else {
+  //     pickProductPicture(userActions?.productImages[index]);
+  //     setUserActions({
+  //       ...userActions,
+  //       pickedColor: index,
+      
+  //     });
+  //   }
+  // };
+
+  const pickProductDisplay = (pic) => {
+    let picIndex = currentProduct?.pictures?.indexOf(pic);
+    if (picIndex > currentProduct?.colors?.length || pic == userActions?.productImages?.[0]) {
+      return;
     } else {
-      pickProductPicture(userActions?.productImages[index]);
-      setUserActions({
-        ...userActions,
-        pickedColor: index,
-      });
+      let currentImages = userActions?.productImages;
+      swapElements(currentImages,0 ,currentImages?.indexOf(pic))
+      setUserActions({...userActions, productImages: currentImages})
+      if (currentProduct?.pictures?.indexOf(pic) > currentProduct?.colors?.length - 1) {
+        setUserActions({...userActions, pickedColor : 0})
+      } else {
+        setUserActions({...userActions, pickedColor : picIndex})
+      }
     }
-  };
+  }
 
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
@@ -152,7 +176,7 @@ export default function SelectedItem() {
                     className="w-1/3 h-full border-2 border-black rounded-md p-1"
                     key={imgLink}
                     onClick={() => {
-                      pickProductPicture(imgLink);
+                      pickProductDisplay(imgLink);
                     }}
                   >
                     <img src={imgLink} alt="" className="w-full h-full" />
@@ -228,6 +252,7 @@ export default function SelectedItem() {
                 <ul className="list-none h-20 flex gap-3 items-center">
                   {currentProduct?.colors?.map((e) => {
                     const colorClassName = productColorsConvert(e);
+                    // console.log(currentProduct?.pictures?.[currentProduct?.colors?.indexOf(e)])
                     return (
                       <li
                         className={`w-14 h-14 p-1 transition-all duration-100 cursor-pointer ${
@@ -238,7 +263,7 @@ export default function SelectedItem() {
                         } rounded-md`}
                         key={e}
                         onClick={() => {
-                          pickProductColor(currentProduct?.colors?.indexOf(e));
+                          pickProductDisplay(currentProduct?.pictures?.[currentProduct?.colors?.indexOf(e)]);
                         }}
                       >
                         <div
