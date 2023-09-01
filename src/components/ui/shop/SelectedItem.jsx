@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import productsData from "../../../data/productsData.json";
 import { Rating } from "@mui/material";
+import { ElectricBolt, LocalShipping, People } from "@mui/icons-material";
+import Card from "./Card";
 
 export default function SelectedItem() {
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
   const [userActions, setUserActions] = useState({
     productImages: [],
@@ -43,7 +45,7 @@ export default function SelectedItem() {
 
     if (!product) {
       // Product not found, navigate to PageNotFound route
-      navigate("/notFound")
+      navigate("/notFound");
       return;
     }
 
@@ -109,57 +111,31 @@ export default function SelectedItem() {
     [array[index1], array[index2]] = [array[index2], array[index1]];
   };
 
-  // const pickProductPicture = (pic) => {
-  //   if (pic === currentProduct?.pictures?.[0]) {
-  //     let resetImages = [...currentProduct?.pictures];
-  //     setUserActions({
-  //       ...userActions,
-  //       productImages: resetImages,
-  //     });
-  //   }
-  //     let newProductImages = userActions?.productImages;
-  //     swapElements(newProductImages, 0, userActions.productImages.indexOf(pic));
-  //     setUserActions({ ...userActions, productImages: newProductImages });
-
-  // };
-
-  // const pickProductColor = (index) => {
-  //   if (index === 0) {
-  //     let resetImages = [...currentProduct?.pictures];
-  //     setUserActions({
-  //       ...userActions,
-  //       productImages: resetImages,
-  //       pickedColor: index, // Update pickedColor along with resetting images
-  //     });
-  //   } else {
-  //     pickProductPicture(userActions?.productImages[index]);
-  //     setUserActions({
-  //       ...userActions,
-  //       pickedColor: index,
-      
-  //     });
-  //   }
-  // };
-
   const pickProductDisplay = (pic) => {
     let picIndex = currentProduct?.pictures?.indexOf(pic);
-    if (picIndex > currentProduct?.colors?.length || pic == userActions?.productImages?.[0]) {
+    if (
+      picIndex > currentProduct?.colors?.length ||
+      pic == userActions?.productImages?.[0]
+    ) {
       return;
     } else {
       let currentImages = userActions?.productImages;
-      swapElements(currentImages,0 ,currentImages?.indexOf(pic))
-      setUserActions({...userActions, productImages: currentImages})
-      if (currentProduct?.pictures?.indexOf(pic) > currentProduct?.colors?.length - 1) {
-        setUserActions({...userActions, pickedColor : 0})
+      swapElements(currentImages, 0, currentImages?.indexOf(pic));
+      setUserActions({ ...userActions, productImages: currentImages });
+      if (
+        currentProduct?.pictures?.indexOf(pic) >
+        currentProduct?.colors?.length - 1
+      ) {
+        setUserActions({ ...userActions, pickedColor: 0 });
       } else {
-        setUserActions({...userActions, pickedColor : picIndex})
+        setUserActions({ ...userActions, pickedColor: picIndex });
       }
     }
-  }
+  };
 
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
-      <div className="w-full h-auto lg:flex lg:mt-5 lg:gap-5">
+      <section className="w-full h-auto lg:flex lg:mt-5 lg:gap-5">
         <div className="mb-6 md:mt-4 lg:w-1/2">
           <div className="w-[95%] sm:w-3/5 lg:w-[95%] mx-auto sm:w-80% md:w-50% h-auto mb-4">
             <img
@@ -173,7 +149,7 @@ export default function SelectedItem() {
               {userActions?.productImages?.slice(1)?.map((imgLink) => {
                 return (
                   <li
-                    className="w-1/3 h-full border-2 border-black rounded-md p-1"
+                    className="w-1/3 h-full border-2 border-black rounded-md p-1 cursor-pointer"
                     key={imgLink}
                     onClick={() => {
                       pickProductDisplay(imgLink);
@@ -263,7 +239,11 @@ export default function SelectedItem() {
                         } rounded-md`}
                         key={e}
                         onClick={() => {
-                          pickProductDisplay(currentProduct?.pictures?.[currentProduct?.colors?.indexOf(e)]);
+                          pickProductDisplay(
+                            currentProduct?.pictures?.[
+                              currentProduct?.colors?.indexOf(e)
+                            ]
+                          );
                         }}
                       >
                         <div
@@ -286,7 +266,63 @@ export default function SelectedItem() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      <section className="w-full h-auto min-h-screen pt-10">
+        <div className="w-full md:flex gap-5">
+          <ul className="list-none w-full md:w-1/2 ">
+            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
+              <LocalShipping sx={{ fontSize: 60 }} />
+              <p>
+                Shipping service for this product is available to your region at
+                the moment for only{" "}
+                <span className="font-semibold text-primary-blue">
+                  {(Math.random() * 35 + 1).toFixed(2)}$
+                </span>
+              </p>
+            </li>
+            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
+              <People sx={{ fontSize: 60 }} />
+              <p>
+                <span className="font-semibold text-primary-blue">
+                  {Math.floor(Math.random() * 75) + 1} people
+                </span>{" "}
+                bought this items and are satisfied about it
+              </p>
+            </li>
+            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
+              <ElectricBolt sx={{ fontSize: 60 }} />
+              <p>Fast shipping is not available at you region now</p>
+            </li>
+          </ul>
+          <ul className="list-none w-full md:w-1/2 mt-5 md:mt-0 overflow-x-auto border-b-2 border-black flex items-center gap-2 px-3">
+            {productsData.products
+              .filter((e) => {
+                return (
+                  e.category === currentProduct.category &&
+                  e.id != currentProduct.id
+                );
+              })
+              .map((e) => {
+                return (
+                  <li
+                    key={e.id}
+                    className="flex-shrink-0" // Prevents the <li> from stretching to full width
+                    onClick={() => {
+                      navigate(`/shop/product-/${e.id}`);
+                      window.location.reload();
+                    }}
+                  >
+                    <Card
+                      primaryPicture={e?.pictures?.[0]}
+                      name={e?.name}
+                      price={e?.price}
+                    />
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+      </section>
     </div>
   );
 }
