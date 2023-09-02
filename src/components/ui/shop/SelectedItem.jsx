@@ -9,12 +9,49 @@ export default function SelectedItem() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
+  const randomDaysAgo = [
+    Math.floor(Math.random() * 365),
+    Math.floor(Math.random() * 365),
+    Math.floor(Math.random() * 365),
+  ]; // Review Date
   const [userActions, setUserActions] = useState({
     productImages: [],
     sizeUnit: [],
     pickedSize: 7.5,
     pickedQuantity: 1,
     pickedColor: 0,
+    similarProducts: [],
+    reviews: [
+      {
+        userName: "Charles",
+        time:
+          randomDaysAgo[0] > 60
+            ? Math.floor(randomDaysAgo[0] / 30) + " months ago"
+            : randomDaysAgo[0] + " days ago",
+        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        rating: (Math.random() * 5).toFixed(1),
+      },
+      {
+        userName: "Achraf Essousy",
+        time:
+          randomDaysAgo[1] > 60
+            ? Math.floor(randomDaysAgo[1] / 30) + " months ago"
+            : randomDaysAgo[1] + " days ago",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        rating: (Math.random() * 5).toFixed(1),
+      },
+      {
+        userName: "Steph Curry",
+        time:
+          randomDaysAgo[2] > 60
+            ? Math.floor(randomDaysAgo[2] / 30) + " months ago"
+            : randomDaysAgo[2] + " days ago",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+        rating: (Math.random() * 5).toFixed(1),
+      },
+    ],
   });
 
   const productColorsConvert = (e) => {
@@ -50,16 +87,28 @@ export default function SelectedItem() {
     }
 
     setCurrentProduct(product);
+    const newSimilarItem = productsData.products.filter((e) => {
+      return e.category !== product.category;
+    });
     const newSize = product?.category === "jerseys" ? "M" : 8;
     const newSizeUnit =
       product?.category === "jerseys"
         ? productsData?.sizes?.jerseys
         : productsData?.sizes?.shoes;
+
+    const filteredCategoryProducts = productsData.products.filter((e) => {
+      return e.category === product.category && e.id !== product.id;
+    });
+    filteredCategoryProducts.push(
+      newSimilarItem[Math.floor(Math.random() * newSimilarItem.length)]
+    );
+
     setUserActions({
       ...userActions,
       pickedSize: newSize,
       sizeUnit: newSizeUnit,
       productImages: [...product?.pictures],
+      similarProducts: filteredCategoryProducts,
     });
   }, [id]);
 
@@ -267,12 +316,32 @@ export default function SelectedItem() {
           </div>
         </div>
       </section>
-      <section className="w-full h-auto min-h-screen pt-10">
-        <div className="w-full md:flex gap-5">
+      <section className="w-full h-auto min-h-screen py-10 ">
+        <div className="w-full md:flex gap-5 mb-6">
+          <ul className="list-none w-full md:w-1/2 mt-5 md:mt-0 overflow-x-auto md:border-r-2 border-b-2 border-black flex items-center gap-2 px-3 rounded-md">
+            {userActions?.similarProducts.map((e) => {
+              return (
+                <li
+                  key={e.id}
+                  className="flex-shrink-0" // Prevents the <li> from stretching to full width
+                  onClick={() => {
+                    navigate(`/shop/product-/${e.id}`);
+                    window.location.reload();
+                  }}
+                >
+                  <Card
+                    primaryPicture={e?.pictures?.[0]}
+                    name={e?.name}
+                    price={e?.price}
+                  />
+                </li>
+              );
+            })}
+          </ul>
           <ul className="list-none w-full md:w-1/2 ">
             <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
               <LocalShipping sx={{ fontSize: 60 }} />
-              <p>
+              <p className="text-sm sm:text-md">
                 Shipping service for this product is available to your region at
                 the moment for only{" "}
                 <span className="font-semibold text-primary-blue">
@@ -294,34 +363,37 @@ export default function SelectedItem() {
               <p>Fast shipping is not available at you region now</p>
             </li>
           </ul>
-          <ul className="list-none w-full md:w-1/2 mt-5 md:mt-0 overflow-x-auto border-b-2 border-black flex items-center gap-2 px-3">
-            {productsData.products
-              .filter((e) => {
+        </div>
+
+        <ul className="relative w-full h-auto border-2 border-black py-2 px-2 sm:px-4 rounded-md max-h-48 md:max-h-64 overflow-y-auto bg-mesh">
+          <input type="text" className="w-full h-16 bg-transparent" />
+          {userActions?.reviews?.length > 0
+            ? userActions?.reviews.map((e) => {
                 return (
-                  e.category === currentProduct.category &&
-                  e.id != currentProduct.id
-                );
-              })
-              .map((e) => {
-                return (
-                  <li
-                    key={e.id}
-                    className="flex-shrink-0" // Prevents the <li> from stretching to full width
-                    onClick={() => {
-                      navigate(`/shop/product-/${e.id}`);
-                      window.location.reload();
-                    }}
-                  >
-                    <Card
-                      primaryPicture={e?.pictures?.[0]}
-                      name={e?.name}
-                      price={e?.price}
-                    />
+                  <li className="w-full h-auto border border-black rounded-sm my-2 px-1 sm:px-2 md:px-4 pb-2 sm:py-2">
+                    <div className="w-full flex justify-between px-2 py-1">
+                      <div className="sm:flex sm:items-center sm:gap-2">
+                        <h1 className="font-semibold text-lg sm:text-xl">
+                          {e.userName}
+                        </h1>
+                        <h1 className="font-light text-sm sm:text-md text-slate-500">
+                          {e.time}
+                        </h1>
+                      </div>
+                      <Rating
+                        size="small"
+                        name="half-rating-read"
+                        value={e.rating}
+                        precision={0.1}
+                        readOnly
+                      ></Rating>
+                    </div>
+                    <p>{e.comment}</p>
                   </li>
                 );
-              })}
-          </ul>
-        </div>
+              })
+            : null}
+        </ul>
       </section>
     </div>
   );

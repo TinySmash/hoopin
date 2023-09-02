@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
 
 :root {
   --dark-yellow: #fca311;
@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
 /* HOMEPAGE */
 
 .bg-homepage-section-1 {
-  background-image: url('./components/images/bg.png');
+  background-image: url("./components/images/bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@ body::-webkit-scrollbar {
 }
 
 .bg-homepage-section-2 {
-  background-image: url('./components/images/bg2.svg');
+  background-image: url("./components/images/bg2.svg");
   background-origin: content-box;
   background-position: center top;
   background-size: cover;
@@ -69,7 +69,7 @@ body::-webkit-scrollbar {
 }
 
 .bg-homepage-section-4 {
-  background-image: url('./components/images/bg4.svg');
+  background-image: url("./components/images/bg4.svg");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -111,7 +111,7 @@ body::-webkit-scrollbar {
 }
 
 .bg-shop {
-  background-image: url('./components/images/shop-bg.png');
+  background-image: url("./components/images/shop-bg.png");
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -121,7 +121,7 @@ body::-webkit-scrollbar {
 /* PRODUCT PAGE */
 
 .bg-product-page {
-  background-image: url('./components/images/ProductPage.svg');
+  background-image: url("./components/images/ProductPage.svg");
   background-size: cover;
   background-repeat: no-repeat;
   /* position: center bottom; */
@@ -134,4 +134,26 @@ body::-webkit-scrollbar {
 
 .bg-black-and-red {
   background: linear-gradient(90deg, black 50%, gray 1%, rgb(239, 68, 68) 49%);
+}
+
+.bg-mesh {
+  /* background-color: hsla(300, 0%, 89%, 0.75);
+  background-image: radial-gradient(
+      at 100% 100%,
+      hsla(220, 49%, 15%, 1) 0px,
+      transparent 25%
+    ),
+    radial-gradient(at 100% 0%, hsla(220, 49%, 15%, 1) 0px, transparent 25%),
+    radial-gradient(at 0% 0%, hsla(37, 97%, 52%, 1) 0px, transparent 25%),
+    radial-gradient(at 52% 46%, hsla(0, 0%, 89%, 1) 0px, transparent 25%); */
+
+  background-color: hsla(300, 0%, 89%, 0.8);
+  background-image: radial-gradient(
+      at 8% 58%,
+      hsla(36, 97%, 52%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 100% 100%, hsla(220, 49%, 15%, 0) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(220, 49%, 15%, 0) 0px, transparent 50%),
+    radial-gradient(at 7% 32%, hsla(37, 97%, 52%, 1) 0px, transparent 50%);
 }
