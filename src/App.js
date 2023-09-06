@@ -10,6 +10,7 @@ import NotFound from "./components/ui/NotFound";
 
 const Shop = lazy(() => import("./components/ui/shop/Shop"));
 const SelectedItem = lazy(() => import("./components/ui/shop/SelectedItem"));
+const SignUp = lazy(() => import("./components/ui/user/SignUp"));
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
                 path="/shop/product-/:id"
                 element={<SelectedItem />}
               ></Route>
-              <Route path="/notFound" element={<NotFound />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
+              <Route exact path="/user-signup" element={<SignUp />}></Route>
             </Routes>
             <Footer />
           </Suspense>

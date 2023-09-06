@@ -118,6 +118,15 @@ body::-webkit-scrollbar {
   background-origin: border-box;
 }
 
+/*  ERROR 404  */
+
+.bg-404 {
+  background-image: url("./components/images/pageNotFound.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @apply bg-primary-gray;
+}
+
 /* PRODUCT PAGE */
 
 .bg-product-page {
@@ -156,4 +165,13 @@ body::-webkit-scrollbar {
     radial-gradient(at 100% 100%, hsla(220, 49%, 15%, 0) 0px, transparent 50%),
     radial-gradient(at 100% 0%, hsla(220, 49%, 15%, 0) 0px, transparent 50%),
     radial-gradient(at 7% 32%, hsla(37, 97%, 52%, 1) 0px, transparent 50%);
+}
+
+/*  SIGN UP  */
+
+.bg-sign-up {
+  background-image: url("./components/images/signIn.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @apply bg-primary-gray;
 }

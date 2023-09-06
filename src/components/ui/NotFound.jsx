@@ -5,7 +5,7 @@ function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-screen bg-primary-gray">
+    <div className="w-full h-screen bg-404">
       <div className="relative top-32 md:top-56 w-fit mx-auto text-center leading-[5]">
         <h1 className="font-semibold w-fit mx-auto tracking-[0.2em] text-7xl md:text-8xl lg:text-9xl flex items-center text-primary-blue">
           4{" "}
