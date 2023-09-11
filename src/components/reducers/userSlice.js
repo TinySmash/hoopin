@@ -5,7 +5,8 @@ const userSlice = createSlice({
   initialState: {
     loginInfo: {
       isConnected: false,
-      fullName: "",
+      userId: null,
+      fullName: " ",
       username: "",
       email: "",
       password: "",
@@ -20,11 +21,11 @@ const userSlice = createSlice({
     },
     Login(state, action) {},
     Logout(state, action) {},
-    getUserLoginData(state) {
-      return state.loginInfo;
-    },
+    // getUserLoginData(state) {
+    //   return state.loginInfo;
+    // },
   },
 });
 
-export const { SignUp, Login, Logout } = userSlice.actions;
+export const { SignUp, Login, Logout, getUserById } = userSlice.actions;
 export const userReducer = userSlice.reducer;

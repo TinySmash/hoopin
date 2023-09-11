@@ -175,3 +175,58 @@ body::-webkit-scrollbar {
   background-repeat: no-repeat;
   @apply bg-primary-gray;
 }
+
+@keyframes appearing {
+  0% {
+    opacity: 0%;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shake-appearing {
+  0% {
+    opacity: 0%;
+    transform: translateX(-10px);
+  }
+  10% {
+    opacity: 50%;
+    transform: translateX(10px);
+  }
+  20% {
+    opacity: 100%;
+    transform: translateX(-10px);
+  }
+  30% {
+    transform: translateX(10px);
+  }
+  40% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  70% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.appearing-left {
+  animation: appearing 1s 1;
+}
+
+.shake-appearing {
+  animation: shake-appearing 0.7s 1;
+}

@@ -4,10 +4,16 @@ import productsData from "../../../data/productsData.json";
 import { Rating } from "@mui/material";
 import { ElectricBolt, LocalShipping, People } from "@mui/icons-material";
 import Card from "./Card";
+import { useSelector } from "react-redux";
 
 export default function SelectedItem() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const userConnected = useSelector(
+    (state) => state.user.loginInfo.isConnected
+  );
+
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
   const randomDaysAgo = [
     Math.floor(Math.random() * 365),
@@ -310,10 +316,24 @@ export default function SelectedItem() {
             ) : null}
 
             <div className="w-4/5 sm:w-3/5 md:w-full mx-auto md:flex md:gap-3 md:my-5">
-              <button className="bg-emerald-500 my-6 md:my-0 w-full lg:my-0 text-primary-white text-3xl xl:text-4xl font-bold px-8 py-3 rounded-xl lg:w-1/2">
+              <button
+                className="bg-emerald-500 my-6 md:my-0 w-full lg:my-0 text-primary-white text-3xl xl:text-4xl font-bold px-8 py-3 rounded-xl lg:w-1/2"
+                onClick={() => {
+                  !userConnected
+                    ? navigate("/user-login")
+                    : navigate(`buy-product-${id}`);
+                }}
+              >
                 Add to cart
               </button>
-              <button className=" bg-primary-blue text-primary-white text-4xl font-bold px-10 py-3 rounded-xl w-full lg:w-1/2">
+              <button
+                className=" bg-primary-blue text-primary-white text-4xl font-bold px-10 py-3 rounded-xl w-full lg:w-1/2"
+                onClick={() => {
+                  !userConnected
+                    ? navigate("/user-login")
+                    : navigate(`user-cart`);
+                }}
+              >
                 Buy Now
               </button>
             </div>
