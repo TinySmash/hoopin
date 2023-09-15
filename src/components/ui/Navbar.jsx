@@ -6,9 +6,7 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const navbarRef = useRef("");
 
-  const userConnected = useSelector(
-    (state) => state.user.loginInfo.isConnected
-  );
+  const userLoginInfo = useSelector((state) => state.user.loginInfo);
 
   const navigate = useNavigate();
 
@@ -127,7 +125,7 @@ export default function Navbar() {
             <button
               className="flex items-center justify-center w-10 md:w-[3.3rem] h-full rounded-full bg-primary-gray cursor-pointer mr-3 sm:mr-8"
               onClick={() => {
-                !userConnected
+                !userLoginInfo.isConnected
                   ? navigate("/user-signup")
                   : navigate("/user/shopping-cart");
               }}
@@ -137,7 +135,11 @@ export default function Navbar() {
             <button
               className="flex items-center justify-center  w-10 md:w-[3.3rem] h-full rounded-full bg-primary-gray cursor-pointer"
               onClick={() => {
-                !userConnected ? navigate("/user-signup") : navigate("/user");
+                !userLoginInfo.isConnected
+                  ? navigate("/user-signup")
+                  : navigate(
+                      `/user-${userLoginInfo.userId}/${userLoginInfo.username}`
+                    );
               }}
             >
               <Person sx={{ fontSize: "30px" }}></Person>
