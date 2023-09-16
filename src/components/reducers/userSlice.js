@@ -19,7 +19,18 @@ const userSlice = createSlice({
     SignUp(state, action) {
       state.loginInfo = action.payload;
     },
-    Login(state, action) {},
+    Login(state, action) {
+      state.loginInfo = {
+        ...action.payload,
+        username: "tinys_smash_",
+        email: "islam.gueniari@gmail.com",
+        userId: "0123456789ABCDEF",
+        fullName: {
+          firstName: "islam",
+          lastName: "El Gueniari",
+        },
+      };
+    },
     Logout(state, action) {},
     // getUserLoginData(state) {
     //   return state.loginInfo;

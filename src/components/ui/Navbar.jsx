@@ -126,7 +126,7 @@ export default function Navbar() {
               className="flex items-center justify-center w-10 md:w-[3.3rem] h-full rounded-full bg-primary-gray cursor-pointer mr-3 sm:mr-8"
               onClick={() => {
                 !userLoginInfo.isConnected
-                  ? navigate("/user-signup")
+                  ? navigate("/signup")
                   : navigate("/user/shopping-cart");
               }}
             >
@@ -136,9 +136,9 @@ export default function Navbar() {
               className="flex items-center justify-center  w-10 md:w-[3.3rem] h-full rounded-full bg-primary-gray cursor-pointer"
               onClick={() => {
                 !userLoginInfo.isConnected
-                  ? navigate("/user-signup")
+                  ? navigate("/signup")
                   : navigate(
-                      `/user-${userLoginInfo.userId}/${userLoginInfo.username}`
+                      `/user/${userLoginInfo.userId}/${userLoginInfo.username}`
                     );
               }}
             >

@@ -17,7 +17,7 @@ function SignUp() {
 
   useEffect(() => {
     if (userLoginInfo?.isConnected == true) {
-      navigate(`/user-${userLoginInfo.userId}/${userLoginInfo.username}`);
+      navigate(`/user/${userLoginInfo.userId}/${userLoginInfo.username}`);
     }
   }, [userLoginInfo]);
 
@@ -265,10 +265,7 @@ function SignUp() {
           <div className="flex flex-col items-center mt-2">
             <h2>
               Already have an account?
-              <Link
-                to="/user-login"
-                className="text-primary-blue underline ml-2"
-              >
+              <Link to="/login" className="text-primary-blue underline ml-2">
                 Login
               </Link>
             </h2>
