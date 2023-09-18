@@ -18,6 +18,7 @@
 
 body {
   overflow-x: hidden;
+  @apply bg-primary-gray;
 }
 
 body::-webkit-scrollbar {
@@ -229,4 +230,10 @@ body::-webkit-scrollbar {
 
 .shake-appearing {
   animation: shake-appearing 0.7s 1;
+}
+
+/*  USER PAGE  */
+
+.usermenu-icon-on {
+  @apply translate-x-40 sm:translate-x-44 md:translate-x-48;
 }

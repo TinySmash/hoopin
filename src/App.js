@@ -7,6 +7,7 @@ import store from "./store";
 import { Provider } from "react-redux";
 import Loading from "./components/ui/Loading";
 import NotFound from "./components/ui/NotFound";
+import Account from "./components/ui/user/profile/Account";
 
 const Shop = lazy(() => import("./components/ui/shop/Shop"));
 const SelectedItem = lazy(() => import("./components/ui/shop/SelectedItem"));
@@ -28,7 +29,9 @@ function App() {
                 path="/shop/product-/:id"
                 element={<SelectedItem />}
               ></Route>
-              <Route path="/user" element={<User />}></Route>
+              <Route path="/user" element={<User />}>
+                <Route path="account" element={<Account />}></Route>
+              </Route>
               <Route path="/signup" element={<SignUp />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="*" element={<NotFound />}></Route>
