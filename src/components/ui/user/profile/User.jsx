@@ -31,6 +31,7 @@ function User() {
   const toggleUserMenu = () => {
     userMenuRef.current.classList.toggle("-translate-x-full");
     menuIconRef.current.classList.toggle("usermenu-icon-on");
+    document.body.classList.toggle("overflow-y-hidden");
   };
 
   const userNav = (index) => {};
@@ -38,7 +39,7 @@ function User() {
   return (
     <div className="w-full h-auto bg-primary-gray relative pt-16 md:pt-20">
       <div
-        className="w-40 absolute sm:w-44 md:w-48 border-2 border-t-0 border-black border-l-0 md:border-t-0 h-4/5 bg-primary-gray z-30 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:translate-x-0 transition-all duration-200"
+        className="w-40 fixed sm:w-44 md:w-48 border-2 border-t-0 border-black border-l-0 md:border-t-0 h-screen bg-primary-gray z-30 rounded-md backdrop-blur-lg py-4 px-1 -translate-x-full md:translate-x-0 transition-all duration-200"
         ref={userMenuRef}
       >
         <nav className="flex flex-col w-full px-2">
@@ -130,7 +131,7 @@ function User() {
       </div>
       <div className="w-full h-auto min-h-screen relative">
         <button
-          className="flex md:hidden relative ml-2 mt-4 items-center text-xl transition-all duration-200"
+          className="flex md:hidden fixed ml-2 mt-4 items-center text-xl transition-all duration-200 z-50"
           onClick={toggleUserMenu}
           ref={menuIconRef}
         >
