@@ -7,13 +7,14 @@ import store from "./store";
 import { Provider } from "react-redux";
 import Loading from "./components/ui/Loading";
 import NotFound from "./components/ui/NotFound";
-import Account from "./components/ui/user/profile/Account";
 
 const Shop = lazy(() => import("./components/ui/shop/Shop"));
 const SelectedItem = lazy(() => import("./components/ui/shop/SelectedItem"));
 const SignUp = lazy(() => import("./components/ui/user/SignUp"));
 const Login = lazy(() => import("./components/ui/user/Login"));
 const User = lazy(() => import("./components/ui/user/profile/User"));
+const Account = lazy(() => import("./components/ui/user/profile/Account"));
+const Saved = lazy(() => import("./components/ui/user/profile/Saved"));
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
                 path="/shop/product-/:id"
                 element={<SelectedItem />}
               ></Route>
-              <Route path="/user" element={<User />}>
+              <Route path="/user/:id/:username" element={<User />}>
                 <Route path="account" element={<Account />}></Route>
+                <Route path="saved-products" element={<Saved />}></Route>
               </Route>
               <Route path="/signup" element={<SignUp />}></Route>
               <Route path="/login" element={<Login />}></Route>

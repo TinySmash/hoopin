@@ -4,15 +4,15 @@ import productsData from "../../../data/productsData.json";
 import { Rating } from "@mui/material";
 import { ElectricBolt, LocalShipping, People } from "@mui/icons-material";
 import Card from "./Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../reducers/userSlice";
 
 export default function SelectedItem() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const userConnected = useSelector(
-    (state) => state.user.loginInfo.isConnected
-  );
+  const user = useSelector((state) => state.user);
 
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
   const randomDaysAgo = [
@@ -319,9 +319,17 @@ export default function SelectedItem() {
               <button
                 className="bg-emerald-500 my-6 md:my-0 w-full lg:my-0 text-primary-white text-3xl xl:text-4xl font-bold px-8 py-3 rounded-xl lg:w-1/2"
                 onClick={() => {
-                  !userConnected
-                    ? navigate("/user-login")
-                    : navigate(`buy-product-${id}`);
+                  user.loginInfo.isConnected
+                    ? dispatch(
+                        // addToCart({
+                        //   productId: currentProduct?.id,
+                        //   size: userActions.pickedSize,
+                        //   qty: userActions.pickedQuantity,
+                        //   color: userActions.pickedColor,
+                        // })
+                        addToCart("product")
+                      )
+                    : navigate("/Login");
                 }}
               >
                 Add to cart
@@ -329,8 +337,8 @@ export default function SelectedItem() {
               <button
                 className=" bg-primary-blue text-primary-white text-4xl font-bold px-10 py-3 rounded-xl w-full lg:w-1/2"
                 onClick={() => {
-                  !userConnected
-                    ? navigate("/user-login")
+                  !user.loginInfo.isConnected
+                    ? navigate("/Login")
                     : navigate(`user-cart`);
                 }}
               >

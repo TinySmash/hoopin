@@ -55,7 +55,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="relative">
+    <>
       <div
         className="w-full h-screen fixed bg-nav-primary-gray backdrop-blur-md z-50 transition-all duration-200 -translate-x-full md:hidden"
         ref={mobileMenuRef}
@@ -127,7 +127,9 @@ export default function Navbar() {
               onClick={() => {
                 !userLoginInfo.isConnected
                   ? navigate("/signup")
-                  : navigate("/user/shopping-cart");
+                  : navigate(
+                      `/user/${userLoginInfo.userId}/${userLoginInfo.username}/saved-products`
+                    );
               }}
             >
               <ShoppingCartRounded></ShoppingCartRounded>
@@ -147,6 +149,6 @@ export default function Navbar() {
           </div>
         </nav>
       </header>
-    </div>
+    </>
   );
 }

@@ -12,6 +12,8 @@ import {
   Inbox,
 } from "@mui/icons-material";
 
+import { useLocation } from "react-router-dom";
+
 function User() {
   const userLoginInfo = useSelector((state) => state.user.loginInfo);
   const navigate = useNavigate();
@@ -19,14 +21,21 @@ function User() {
   const menuIconRef = useRef();
   const navItemsRef = useRef([]);
   const [selectedNav, setSelectedNav] = useState(0);
+  const location = useLocation();
+  const currentLocation = location.pathname;
 
-  // useEffect(() => {
-  //   if (!userLoginInfo.isConnected) {
-  //     navigate("/signup");
-  //   } else {
-  //     navigate("account");
-  //   }
-  // }, [userLoginInfo]);
+  useEffect(() => {
+    if (!userLoginInfo.isConnected) {
+      navigate("/signup");
+    }
+    if (currentLocation?.includes("account")) {
+      setSelectedNav(0);
+    } else if (currentLocation?.includes("saved-products")) {
+      setSelectedNav(1);
+    } else {
+      navigate("account");
+    }
+  }, [userLoginInfo, currentLocation]);
 
   const toggleUserMenu = () => {
     userMenuRef.current.classList.toggle("-translate-x-full");
@@ -131,7 +140,7 @@ function User() {
       </div>
       <div className="w-full h-auto min-h-screen relative">
         <button
-          className="flex md:hidden fixed ml-2 mt-4 items-center text-xl transition-all duration-200 z-50"
+          className="flex md:hidden fixed ml-2 mt-4 items-center text-xl transition-all duration-200 z-40"
           onClick={toggleUserMenu}
           ref={menuIconRef}
         >

@@ -12,7 +12,10 @@ const userSlice = createSlice({
       password: "",
     },
     balance: 0,
-    cart: [],
+    savedProducts: {
+      cart: [],
+      liked: [],
+    },
     history: [],
   },
   reducers: {
@@ -36,7 +39,36 @@ const userSlice = createSlice({
     //   return state.loginInfo;
     // },
   },
+  addToCart(state, action) {
+    // state.savedProducts.cart.push(action.payload);
+    // state.savedProducts.cart = [...(state.savedProducts.cart + action.payload)];
+    state.loginInfo = "mok";
+  },
+  removeProductFromCart(state, action) {
+    state.savedProducts.cart.splice(
+      state.savedProducts.cart.indexOf(action.payload),
+      1
+    );
+  },
+  addProductToLiked(state, action) {
+    state.savedProducts.liked.push(action.payload);
+  },
+  removeProductFromLiked(state, action) {
+    state.savedProducts.liked.splice(
+      state.savedProducts.liked.indexOf(action.payload),
+      1
+    );
+  },
 });
 
-export const { SignUp, Login, Logout, getUserById } = userSlice.actions;
+export const {
+  SignUp,
+  Login,
+  Logout,
+  getUserById,
+  addToCart,
+  removeProductFromCart,
+  addProductToLiked,
+  removeProductFromLiked,
+} = userSlice.actions;
 export const userReducer = userSlice.reducer;

@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   CameraAlt,
   Create,
@@ -7,12 +9,13 @@ import {
   Instagram,
   Facebook,
   Twitter,
+  DoorFrontOutlined,
 } from "@mui/icons-material";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 function Account() {
   const profilePicture = null;
+
+  // length
 
   const user = useSelector((state) => state.user);
 
@@ -42,10 +45,12 @@ function Account() {
         </div>
         <div className="w-full relative h-32 sm:pl-8 py-5 text-center sm:text-start">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-primary-blue">
-            @{user.loginInfo.username}tinys_smash_
+            @{user.loginInfo.username}
           </h1>
           <h1 className="text-xl md:text-2xl text-gray-500">
-            {user.loginInfo.username}Islam El Gueniari
+            {user.loginInfo.fullName.firstName +
+              " " +
+              user.loginInfo.fullName.familyName}
           </h1>
           <h1 className="text-xl md:text-2xl text-gray-500 mb-3">
             #ksoiv6********t61b
@@ -95,26 +100,31 @@ function Account() {
         </div>
         <div
           className={`py-2 sm:py-6 border-2 border-primary-blue rounded-md text-center col-start-1 row-start-3 row-end-5 sm:row-start-2 ${
-            user.cart.length === 0 ? "sm:row-end-4" : "sm:row-end-5"
+            user.savedProducts.cart.length === 0
+              ? "sm:row-end-4"
+              : "sm:row-end-5"
           }`}
         >
           <h1 className="ml-3 text-2xl font-bold sm:mb-1 text-primary-blue">
             Shopping history
           </h1>
-          {user.cart.length !== 0 ? null : (
+          {user.savedProducts.cart.length !== 0 ? null : (
             <>
               <h1 className="text-3xl font-bold mb-6">--</h1>
               <p className="text-gray-500">You have not made any action yet</p>
             </>
           )}
         </div>
-        <div className="py-6 border-2 border-primary-blue rounded-md text-center col-start-2 row-span-1">
+        <div className="py-6 px-3 border-2 border-primary-blue rounded-md text-center col-start-2 row-span-1">
           join our extended community on social media.
           <div className="flex justify-between items-start px-2 sm:px-5 mt-4">
             <Instagram sx={{ fontSize: "160%", cursor: "pointer" }} />
             <Facebook sx={{ fontSize: "160%", cursor: "pointer" }} />
             <Twitter sx={{ fontSize: "160%", cursor: "pointer" }} />
           </div>
+          <button className="block w-full mt-3 py-2 bg-red-600 text-primary-gray text-xl font-bold rounded-lg">
+            Logout <DoorFrontOutlined />
+          </button>
         </div>
       </div>
     </div>

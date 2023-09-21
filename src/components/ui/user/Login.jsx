@@ -52,7 +52,6 @@ function Login() {
     if (userLoginInfo?.isConnected == true) {
       navigate(`/user/${userLoginInfo?.userId}/${userLoginInfo?.username}`);
     }
-    console.log(userLoginInfo);
   }, [userLoginInfo]);
 
   return (

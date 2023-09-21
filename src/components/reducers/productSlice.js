@@ -1,48 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const productsSlice = createSlice({
-  name: 'Products',
+  name: "Products",
   initialState: {
     filterProducts: {
       byCategory: {
         enabled: false,
-        categories: ['All']
+        categories: ["All"],
       },
       priceRange: {
         enabled: false,
         min: 0,
-        max: 9999999
+        max: 9999999,
       },
-      sorted: 'BY_ID',
+      sorted: "BY_ID",
       bySearchInput: {
         enabled: false,
-        input: ''
-      }
+        input: "",
+      },
     },
-    likedProducts: [],
-    specialOffers: []
+    specialOffers: [],
   },
   reducers: {
-    addProductToCart(state, action) {
-      state.cart.push(action.payload);
-    },
-    removeProductFromCart(state, action) {
-      state.cart.splice(state.cart.indexOf(action.payload), 1);
-    },
-    addProductToLiked(state, action) {
-      state.likedProducts.push(action.payload);
-    },
-    removeProductFromLiked(state, action) {
-      state.likedProducts.splice(
-        state.likedProducts.indexOf(action.payload),
-        1
-      );
-    },
     filterProductsByCategory(state, action) {
       if (!state.filterProducts.byCategory.enabled) {
         state.filterProducts.byCategory.enabled = true;
         state.filterProducts.byCategory.categories =
-          state.filterProducts.byCategory.categories.filter(e => e !== 'All');
+          state.filterProducts.byCategory.categories.filter((e) => e !== "All");
         state.filterProducts.byCategory.categories.push(action.payload);
       } else {
         state.filterProducts.byCategory.categories.push(action.payload);
@@ -56,7 +40,7 @@ const productsSlice = createSlice({
         );
       } else if (state.filterProducts.byCategory.categories.length == 1) {
         state.filterProducts.byCategory.enabled = false;
-        state.filterProducts.byCategory.categories = ['All'];
+        state.filterProducts.byCategory.categories = ["All"];
       }
     },
     filterBySearchInput(state, action) {
@@ -69,10 +53,10 @@ const productsSlice = createSlice({
     },
     unfilterBySearchInput(state, action) {
       state.filterProducts.bySearchInput.enabled = false;
-      state.filterProducts.bySearchInput.input = '';
+      state.filterProducts.bySearchInput.input = "";
     },
     filterByPriceRange(state, action) {
-      if (action.payload.min !== '' || action.payload.max !== '') {
+      if (action.payload.min !== "" || action.payload.max !== "") {
         state.filterProducts.priceRange.enabled = true;
         state.filterProducts.priceRange.min = action.payload.min;
         state.filterProducts.priceRange.max = action.payload.max;
@@ -84,20 +68,16 @@ const productsSlice = createSlice({
     },
     sortBy(state, action) {
       state.filterProducts.sorted = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const {
-  addProductToCart,
-  removeProductFromCart,
-  addProductToLiked,
-  removeProductFromLiked,
   filterProductsByCategory,
   unfilterProductsByCategory,
   filterBySearchInput,
   unfilterBySearchInput,
   filterByPriceRange,
-  sortBy
+  sortBy,
 } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
