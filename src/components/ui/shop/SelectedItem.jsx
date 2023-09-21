@@ -194,7 +194,7 @@ export default function SelectedItem() {
 
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
-      <section className="w-full h-auto lg:flex lg:mt-5 lg:gap-5">
+      <section className="w-full h-auto min-h-screen lg:flex lg:mt-5 lg:gap-5">
         <div className="mb-6 md:mt-4 lg:w-1/2">
           <div className="w-[95%] sm:w-3/5 lg:w-[95%] mx-auto sm:w-80% md:w-50% h-auto mb-4">
             <img

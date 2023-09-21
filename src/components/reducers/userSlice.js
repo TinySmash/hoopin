@@ -38,26 +38,24 @@ const userSlice = createSlice({
     // getUserLoginData(state) {
     //   return state.loginInfo;
     // },
-  },
-  addToCart(state, action) {
-    // state.savedProducts.cart.push(action.payload);
-    // state.savedProducts.cart = [...(state.savedProducts.cart + action.payload)];
-    state.loginInfo = "mok";
-  },
-  removeProductFromCart(state, action) {
-    state.savedProducts.cart.splice(
-      state.savedProducts.cart.indexOf(action.payload),
-      1
-    );
-  },
-  addProductToLiked(state, action) {
-    state.savedProducts.liked.push(action.payload);
-  },
-  removeProductFromLiked(state, action) {
-    state.savedProducts.liked.splice(
-      state.savedProducts.liked.indexOf(action.payload),
-      1
-    );
+    addToCart(state, action) {
+      state.savedProducts.cart.push(action.payload);
+    },
+    removeProductFromCart(state, action) {
+      state.savedProducts.cart.splice(
+        state.savedProducts.cart.indexOf(action.payload),
+        1
+      );
+    },
+    addProductToLiked(state, action) {
+      state.savedProducts.liked.push(action.payload);
+    },
+    removeProductFromLiked(state, action) {
+      state.savedProducts.liked.splice(
+        state.savedProducts.liked.indexOf(action.payload),
+        1
+      );
+    },
   },
 });
 
