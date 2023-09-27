@@ -53,7 +53,11 @@ function Account() {
               user.loginInfo.fullName.familyName}
           </h1>
           <h1 className="text-xl md:text-2xl text-gray-500 mb-3">
-            #ksoiv6********t61b
+            #
+            {user.loginInfo.userId.replace(
+              user.loginInfo.userId.substring(3, 12),
+              "*********"
+            )}
           </h1>
           <h2 className="text-lg sm:absolute sm:right-5 sm:bottom-0 text-sky-600 underline underline-offset-2 cursor-pointer">
             Modify Profile Info{" "}

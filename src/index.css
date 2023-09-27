@@ -237,3 +237,14 @@ body::-webkit-scrollbar {
 .usermenu-icon-on {
   @apply translate-x-40 sm:translate-x-44 md:translate-x-48;
 }
+
+/*  CART  */
+
+.cart-close {
+  @apply h-0 transition-all duration-200;
+}
+
+.cart-close > ul,
+.cart-close > button {
+  @apply hidden;
+}

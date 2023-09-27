@@ -35,9 +35,7 @@ const userSlice = createSlice({
       };
     },
     Logout(state, action) {},
-    // getUserLoginData(state) {
-    //   return state.loginInfo;
-    // },
+
     addToCart(state, action) {
       state.savedProducts.cart.push(action.payload);
     },

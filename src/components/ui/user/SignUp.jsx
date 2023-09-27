@@ -106,6 +106,10 @@ function SignUp() {
                   userId: randomUserId,
                 })
               );
+              localStorage.setItem(
+                "userToken",
+                userSignUpInfo.username + " " + randomUserId
+              );
             } else {
               errMsgRef.current[3].classList?.remove("hidden");
             }

@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import productsData from "../../../data/productsData.json";
 import { Rating } from "@mui/material";
-import { ElectricBolt, LocalShipping, People } from "@mui/icons-material";
+import {
+  CheckCircle,
+  DisabledByDefault,
+  ElectricBolt,
+  LocalShipping,
+  People,
+} from "@mui/icons-material";
 import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../reducers/userSlice";
@@ -11,6 +17,7 @@ export default function SelectedItem() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const addToCartAlertRef = useRef("");
 
   const user = useSelector((state) => state.user);
 
@@ -27,38 +34,39 @@ export default function SelectedItem() {
     pickedQuantity: 1,
     pickedColor: 0,
     similarProducts: [],
-    reviews: [
-      {
-        userName: "Charles",
-        time:
-          randomDaysAgo[0] > 60
-            ? Math.floor(randomDaysAgo[0] / 30) + " months ago"
-            : randomDaysAgo[0] + " days ago",
-        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        rating: (Math.random() * 5).toFixed(1),
-      },
-      {
-        userName: "Achraf Essousy",
-        time:
-          randomDaysAgo[1] > 60
-            ? Math.floor(randomDaysAgo[1] / 30) + " months ago"
-            : randomDaysAgo[1] + " days ago",
-        comment:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-        rating: (Math.random() * 5).toFixed(1),
-      },
-      {
-        userName: "Steph Curry",
-        time:
-          randomDaysAgo[2] > 60
-            ? Math.floor(randomDaysAgo[2] / 30) + " months ago"
-            : randomDaysAgo[2] + " days ago",
-        comment:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-        rating: (Math.random() * 5).toFixed(1),
-      },
-    ],
   });
+
+  const [reviews, setReviews] = useState([
+    {
+      userName: "Charles",
+      time:
+        randomDaysAgo[0] > 60
+          ? Math.floor(randomDaysAgo[0] / 30) + " months ago"
+          : randomDaysAgo[0] + " days ago",
+      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      rating: (Math.random() * 5).toFixed(1),
+    },
+    {
+      userName: "Achraf Essousy",
+      time:
+        randomDaysAgo[1] > 60
+          ? Math.floor(randomDaysAgo[1] / 30) + " months ago"
+          : randomDaysAgo[1] + " days ago",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      rating: (Math.random() * 5).toFixed(1),
+    },
+    {
+      userName: "Steph Curry",
+      time:
+        randomDaysAgo[2] > 60
+          ? Math.floor(randomDaysAgo[2] / 30) + " months ago"
+          : randomDaysAgo[2] + " days ago",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      rating: (Math.random() * 5).toFixed(1),
+    },
+  ]);
 
   const productColorsConvert = (e) => {
     switch (e) {
@@ -192,8 +200,72 @@ export default function SelectedItem() {
 
   const [ratingValue, setRatingValue] = useState(0);
 
+  //   ADD TO CART
+
+  const [addToCartSuccess, setAddToCartSuccess] = useState(true);
+
+  const addProductToCart = () => {
+    try {
+      dispatch(
+        addToCart({
+          productId: currentProduct?.id,
+          size: userActions.pickedSize,
+          qty: userActions.pickedQuantity,
+          color:
+            currentProduct?.colors != undefined
+              ? userActions.pickedColor
+              : null,
+        })
+      );
+      addToCartAlertRef.current?.classList.replace("-bottom-40", "-bottom-20");
+      addToCartAlertRef.current?.classList.replace(
+        "bg-red-500",
+        "bg-emerald-500"
+      );
+      addToCartAlertRef.current?.classList.replace(
+        "border-red-800",
+        "border-emerald-800"
+      );
+      setAddToCartSuccess(true);
+      setTimeout(() => {
+        addToCartAlertRef.current?.classList.replace(
+          "-bottom-20",
+          "-bottom-40"
+        );
+      }, 3500);
+    } catch (e) {
+      addToCartAlertRef.current?.classList.replace("-bottom-40", "-bottom-20");
+      addToCartAlertRef.current?.classList.replace(
+        "bg-emerald-500",
+        "bg-red-500"
+      );
+      addToCartAlertRef.current?.classList.replace(
+        "border-emerald-800",
+        "border-red-800"
+      );
+      setAddToCartSuccess(false);
+      setTimeout(() => {
+        addToCartAlertRef.current?.classList.replace(
+          "-bottom-20",
+          "-bottom-40"
+        );
+      }, 3500);
+    }
+  };
+
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
+      <h1
+        className="w-fit h-36 flex items-start gap-3 px-3 py-2 fixed -bottom-40 right-3 border-2 border-emerald-800 bg-emerald-500 text-3xl text-primary-white font-bold rounded-md z-50 transition-all duration-300"
+        ref={addToCartAlertRef}
+      >
+        {addToCartSuccess ? (
+          <CheckCircle sx={{ fontSize: "120%" }} />
+        ) : (
+          <DisabledByDefault sx={{ fontSize: "120%" }} />
+        )}
+        {addToCartSuccess ? "Added to cart" : "Cart Update Failed"}
+      </h1>
       <section className="w-full h-auto min-h-screen lg:flex lg:mt-5 lg:gap-5">
         <div className="mb-6 md:mt-4 lg:w-1/2">
           <div className="w-[95%] sm:w-3/5 lg:w-[95%] mx-auto sm:w-80% md:w-50% h-auto mb-4">
@@ -320,15 +392,7 @@ export default function SelectedItem() {
                 className="bg-emerald-500 my-6 md:my-0 w-full lg:my-0 text-primary-white text-3xl xl:text-4xl font-bold px-8 py-3 rounded-xl lg:w-1/2"
                 onClick={() => {
                   user.loginInfo.isConnected
-                    ? dispatch(
-                        // addToCart({
-                        //   productId: currentProduct?.id,
-                        //   size: userActions.pickedSize,
-                        //   qty: userActions.pickedQuantity,
-                        //   color: userActions.pickedColor,
-                        // })
-                        addToCart("product")
-                      )
+                    ? addProductToCart()
                     : navigate("/Login");
                 }}
               >
@@ -358,7 +422,7 @@ export default function SelectedItem() {
                   className="flex-shrink-0" // Prevents the <li> from stretching to full width
                   onClick={() => {
                     navigate(`/shop/product-/${e.id}`);
-                    window.location.reload();
+                    window.scrollTo(0, 0);
                   }}
                 >
                   <Card
@@ -405,7 +469,8 @@ export default function SelectedItem() {
           >
             <textarea
               type="text"
-              className="w-full sm:w-2/3 md:w-full h-16 sm:h-full bg-transparent border rounded-sm border-black font-thin text-sm p-1"
+              className="w-full sm:w-2/3 md:w-full h-16 sm:h-full bg-transparent border rounded-sm border-black font-thin text-sm p-1 placeholder:text-gray-600"
+              placeholder="Give a small feedback"
             />
             <div className="w-full sm:w-fit flex justify-end gap-2 sm:block">
               <Rating
@@ -423,10 +488,13 @@ export default function SelectedItem() {
             </div>
           </form>
           <ul className="list-none">
-            {userActions?.reviews?.length > 0
-              ? userActions?.reviews.map((e) => {
+            {reviews?.length > 0
+              ? reviews.map((e) => {
                   return (
-                    <li className="w-full h-auto border border-black rounded-sm my-2 px-1 sm:px-2 md:px-4 pb-2 sm:py-2">
+                    <li
+                      className="w-full h-auto border border-black rounded-sm my-2 px-1 sm:px-2 md:px-4 pb-2 sm:py-2"
+                      key={reviews.indexOf(e)}
+                    >
                       <div className="w-full flex justify-between px-2 py-1">
                         <div className="sm:flex sm:items-center sm:gap-2">
                           <h1 className="font-semibold text-lg sm:text-xl">

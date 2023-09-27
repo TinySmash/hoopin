@@ -1,50 +1,50 @@
-import { FilterAlt } from '@mui/icons-material';
-import React, { useEffect, useRef, useState } from 'react';
-import Card from './Card';
-import Filter from './Filter';
-import productsData from '../../../data/productsData.json';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { FilterAlt } from "@mui/icons-material";
+import React, { useEffect, useRef, useState } from "react";
+import Card from "./Card";
+import Filter from "./Filter";
+import productsData from "../../../data/productsData.json";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Shop() {
   const [filterOpened, setFilterOpened] = useState(false);
-  const filterIconRef = useRef('');
+  const filterIconRef = useRef("");
   const [initialIconRender, setInitialIconRender] = useState(true);
-  const [selectedCategories, setSelectedCategories] = useState(['All']);
-  const [searchInput, setSearchInput] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState(["All"]);
+  const [searchInput, setSearchInput] = useState("");
   const [priceR, setPriceR] = useState({
     enabled: false,
     min: 0,
-    max: 9999999
+    max: 9999999,
   });
-  const [sortingMethod, setSortingMethod] = useState('BY_ID');
+  const [sortingMethod, setSortingMethod] = useState("BY_ID");
 
   const filterCategories = useSelector(
-    state => state.Products.filterProducts.byCategory.categories
+    (state) => state.Products.filterProducts.byCategory.categories
   );
   const filterSearchInput = useSelector(
-    state => state.Products.filterProducts.bySearchInput
+    (state) => state.Products.filterProducts.bySearchInput
   );
   const filterPriceRange = useSelector(
-    state => state.Products.filterProducts.priceRange
+    (state) => state.Products.filterProducts.priceRange
   );
   const itemsSortedBy = useSelector(
-    state => state.Products.filterProducts.sorted
+    (state) => state.Products.filterProducts.sorted
   );
 
   function toggleFilter() {
-    setFilterOpened(prevFilterOpened => {
+    setFilterOpened((prevFilterOpened) => {
       if (!prevFilterOpened) {
-        document.body.style.overflowY = 'hidden';
+        document.body.style.overflowY = "hidden";
         filterIconRef.current.classList.replace(
-          'translate-x-0',
-          'filter-icon-on'
+          "translate-x-0",
+          "filter-icon-on"
         );
       } else {
-        document.body.style.overflowY = 'auto';
+        document.body.style.overflowY = "auto";
         filterIconRef.current.classList.replace(
-          'filter-icon-on',
-          'translate-x-0'
+          "filter-icon-on",
+          "translate-x-0"
         );
       }
       return !prevFilterOpened;
@@ -60,7 +60,7 @@ export default function Shop() {
     filterCategories,
     filterSearchInput.input,
     filterPriceRange,
-    itemsSortedBy
+    itemsSortedBy,
   ]);
 
   return (
@@ -78,9 +78,9 @@ export default function Shop() {
           </div>
           <div className="items w-fit h-auto relative flex justify-center sm:justify-start flex-wrap">
             {productsData.products
-              .filter(product => {
+              .filter((product) => {
                 const selectedCategoriesIncludeAll =
-                  filterCategories.includes('All');
+                  filterCategories.includes("All");
                 const isInSelectedCategories = selectedCategoriesIncludeAll
                   ? true
                   : filterCategories.includes(product.category);
@@ -98,26 +98,25 @@ export default function Shop() {
               })
               .sort((a, b) => {
                 switch (sortingMethod) {
-                  case 'BY_ALPHABET':
+                  case "BY_ALPHABET":
                     return a.name.localeCompare(b.name);
-                  case 'BY_HIGHEST_PRICE':
+                  case "BY_HIGHEST_PRICE":
                     return b.price - a.price;
-                  case 'BY_LOWEST_PRICE':
+                  case "BY_LOWEST_PRICE":
                     return a.price - b.price;
-                  case 'BY_RATING':
+                  case "BY_RATING":
                     return b.rating - a.rating;
-                  case 'BY_ID':
+                  case "BY_ID":
                     return a.id - b.id;
                   default:
                     return;
                 }
               })
-              .map(e => {
+              .map((e) => {
                 return (
-                  <Link to={`/shop/product-/${e.id}`}>
+                  <Link to={`/shop/product-/${e.id}`} key={e?.id}>
                     <Card
                       primaryPicture={e?.pictures?.[0]}
-                      key={e?.id}
                       name={e?.name}
                       price={e?.price}
                     />
