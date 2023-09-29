@@ -1,15 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productsData from "../../../../../data/productsData.json";
 import { useNavigate } from "react-router";
+import { Delete } from "@mui/icons-material";
+import { removeFromCart } from "../../../../reducers/userSlice";
 
 function CartItem(props) {
-  const { cartProduct, openedCart } = props;
+  const { cartProduct } = props;
   const userSavedItems = useSelector((state) => state.user.savedProducts);
   const thisProduct = productsData.products.filter(
     (p) => p.id === cartProduct.productId
   )?.[0];
   const navigate = useNavigate();
-  console.log(thisProduct?.pictures?.[cartProduct.color]);
+  console.log(cartProduct);
+
+  const dispatch = useDispatch();
 
   return (
     <li
@@ -53,7 +57,7 @@ function CartItem(props) {
         />
       </div>
 
-      <div className="w-full mx-auto py-2 flex justify-evenly absolute bottom-0">
+      <div className="w-[94%] mx-auto px-3 py-2 flex justify-between items-center absolute bottom-0">
         <h1 className="text-xl font-bold">
           Total:{" "}
           <span className="text-xl text-primary-blue">
@@ -61,9 +65,17 @@ function CartItem(props) {
             {thisProduct.price * cartProduct?.qty}$
           </span>
         </h1>
-        <button className=" text-primary-white text-xl font-bold px-5 py-1 bg-emerald-500 rounded-md">
-          Buy
-        </button>
+        <div className="flex gap-1">
+          <button className=" text-primary-white text-xl font-bold px-5 py-1 bg-emerald-500 rounded-md">
+            Buy
+          </button>
+          <button
+            className=" text-primary-white text-xl font-bold px-1 bg-red-600 rounded-md"
+            onClick={() => dispatch(removeFromCart(cartProduct))}
+          >
+            <Delete />
+          </button>
+        </div>
       </div>
     </li>
   );

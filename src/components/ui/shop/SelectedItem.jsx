@@ -119,6 +119,8 @@ export default function SelectedItem() {
 
     setUserActions({
       ...userActions,
+      pickedQuantity: 1,
+      pickedColor: 0,
       pickedSize: newSize,
       sizeUnit: newSizeUnit,
       productImages: [...product?.pictures],

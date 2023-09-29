@@ -39,12 +39,31 @@ const userSlice = createSlice({
     addToCart(state, action) {
       state.savedProducts.cart.push(action.payload);
     },
-    removeProductFromCart(state, action) {
-      state.savedProducts.cart.splice(
-        state.savedProducts.cart.indexOf(action.payload),
-        1
-      );
+    removeFromCart(state, action) {
+      const itemToRemove = action.payload;
+      state.savedProducts.cart.filter((i) => {
+        console.log(i, itemToRemove);
+        return i != itemToRemove;
+      });
+      // console.log(itemToRemove);
+      // const indexToRemove = state.savedProducts.cart.findIndex((item) => {
+      //   const itemToRemoveProxy = new Proxy(
+      //     itemToRemove,
+      //     Object.getPrototypeOf(item)
+      //   );
+      //   console.log("Comparing item:", item);
+      //   console.log("To itemToRemove:", itemToRemoveProxy);
+      //   return item === itemToRemoveProxy;
+      // });
+
+      // console.log(indexToRemove, itemToRemove);
+
+      // if (indexToRemove !== -1) {
+      //   // Remove the item from the cart
+      //   state.savedProducts.cart.splice(indexToRemove, 1);
+      // }
     },
+
     addProductToLiked(state, action) {
       state.savedProducts.liked.push(action.payload);
     },
@@ -63,7 +82,7 @@ export const {
   Logout,
   getUserById,
   addToCart,
-  removeProductFromCart,
+  removeFromCart,
   addProductToLiked,
   removeProductFromLiked,
 } = userSlice.actions;

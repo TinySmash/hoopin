@@ -33,9 +33,7 @@ function Saved() {
               }`}
             >
               {userSavedItems.cart.map((e) => {
-                return (
-                  <CartItem cartProduct={e} openedCart={cartItemsOpened} />
-                );
+                return <CartItem cartProduct={e} />;
               })}
             </ul>
           ) : (
