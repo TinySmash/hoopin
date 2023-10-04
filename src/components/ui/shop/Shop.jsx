@@ -114,13 +114,13 @@ export default function Shop() {
               })
               .map((e) => {
                 return (
-                  <Link to={`/shop/product-/${e.id}`} key={e?.id}>
-                    <Card
-                      primaryPicture={e?.pictures?.[0]}
-                      name={e?.name}
-                      price={e?.price}
-                    />
-                  </Link>
+                  <Card
+                    key={e?.id}
+                    primaryPicture={e?.pictures?.[0]}
+                    name={e?.name}
+                    price={e?.price}
+                    id={e?.id}
+                  />
                 );
               })}
           </div>

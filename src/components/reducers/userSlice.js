@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
@@ -41,38 +41,28 @@ const userSlice = createSlice({
     },
     removeFromCart(state, action) {
       const itemToRemove = action.payload;
-      state.savedProducts.cart.filter((i) => {
-        console.log(i, itemToRemove);
-        return i != itemToRemove;
+      state.savedProducts.cart = state.savedProducts.cart.filter((item) => {
+        // Assuming itemToRemove is a unique identifier like an ID
+        return current(item) !== itemToRemove;
       });
-      // console.log(itemToRemove);
-      // const indexToRemove = state.savedProducts.cart.findIndex((item) => {
-      //   const itemToRemoveProxy = new Proxy(
-      //     itemToRemove,
-      //     Object.getPrototypeOf(item)
-      //   );
-      //   console.log("Comparing item:", item);
-      //   console.log("To itemToRemove:", itemToRemoveProxy);
-      //   return item === itemToRemoveProxy;
-      // });
-
-      // console.log(indexToRemove, itemToRemove);
-
-      // if (indexToRemove !== -1) {
-      //   // Remove the item from the cart
-      //   state.savedProducts.cart.splice(indexToRemove, 1);
-      // }
     },
 
-    addProductToLiked(state, action) {
-      state.savedProducts.liked.push(action.payload);
+    toggleLikeProduct(state, action) {
+      const likedProducts = state.savedProducts.liked;
+      const productIndex = likedProducts.indexOf(action.payload);
+
+      if (productIndex === -1) {
+        likedProducts.push(action.payload);
+      } else {
+        likedProducts.splice(productIndex, 1);
+      }
     },
-    removeProductFromLiked(state, action) {
-      state.savedProducts.liked.splice(
-        state.savedProducts.liked.indexOf(action.payload),
-        1
-      );
-    },
+    // removeProductFromLiked(state, action) {
+    //   state.savedProducts.liked.splice(
+    //     state.savedProducts.liked.indexOf(action.payload),
+    //     1
+    //   );
+    // },
   },
 });
 
@@ -83,7 +73,7 @@ export const {
   getUserById,
   addToCart,
   removeFromCart,
-  addProductToLiked,
-  removeProductFromLiked,
+  toggleLikeProduct,
+  // removeProductFromLiked,
 } = userSlice.actions;
 export const userReducer = userSlice.reducer;

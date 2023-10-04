@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import productsData from "../../../../../data/productsData.json";
+import Card from "../../../shop/Card";
 
 function Saved() {
   const [cartItemsOpened, setCartItemsOpened] = useState(false);
@@ -13,7 +14,7 @@ function Saved() {
 
   return (
     <div className="w-full min-h-screen px-6 py-8 pt-16 md:pl-52">
-      <div className="w-full h-auto mb-5">
+      <div className="w-full mb-5">
         <h1
           className="pl-6 text-xl cursor-pointer w-full border-b border-gray-500"
           onClick={() => setCartItemsOpened(!cartItemsOpened)}
@@ -73,10 +74,44 @@ function Saved() {
           {likedItemsOpened ? <ArrowDropUpSharp /> : <ArrowDropDownSharp />}
         </h1>
         <div
-          className={`w-full overflow-x-auto transition-all duration-150 ${
-            likedItemsOpened ? "h-56" : "h-0"
+          className={`relative max-w-full overflow-x-auto transition-all duration-150 ${
+            likedItemsOpened ? "h-auto" : "h-0"
           }`}
-        ></div>
+        >
+          {userSavedItems.liked.length !== 0 ? (
+            <ul
+              className={`relative max-h-min overflow-x-auto flex flex-nowrap gap-2 list-none transition-all duration-200 mt-3 ${
+                !likedItemsOpened ? "hidden" : null
+              }`}
+            >
+              {userSavedItems.liked.map((e) => {
+                const thisLikedProduct = productsData.products.filter((p) => {
+                  return p.id === e;
+                });
+
+                return (
+                  <li>
+                    <Card
+                      key={e}
+                      id={e}
+                      name={thisLikedProduct?.[0]?.name}
+                      price={thisLikedProduct?.[0]?.price}
+                      primaryPicture={thisLikedProduct?.[0]?.pictures?.[0]}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <h1
+              className={`text-3xl text-gray-600 transition-all duration-200 mt-3 ${
+                !likedItemsOpened ? "hidden" : null
+              }`}
+            >
+              You don't have any liked items
+            </h1>
+          )}
+        </div>
       </div>
     </div>
   );

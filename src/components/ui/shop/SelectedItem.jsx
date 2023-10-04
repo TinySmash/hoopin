@@ -6,12 +6,13 @@ import {
   CheckCircle,
   DisabledByDefault,
   ElectricBolt,
+  Favorite,
   LocalShipping,
   People,
 } from "@mui/icons-material";
 import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../../reducers/userSlice";
+import { toggleLikeProduct, addToCart } from "../../reducers/userSlice";
 
 export default function SelectedItem() {
   const { id } = useParams();
@@ -205,20 +206,26 @@ export default function SelectedItem() {
   //   ADD TO CART
 
   const [addToCartSuccess, setAddToCartSuccess] = useState(true);
+  const [addToCartItem, setAddToCartItem] = useState({
+    productId: currentProduct?.id,
+    size: userActions.pickedSize,
+    qty: userActions.pickedQuantity,
+    color: currentProduct?.colors != undefined ? userActions.pickedColor : null,
+  });
+
+  useEffect(() => {
+    setAddToCartItem({
+      productId: currentProduct?.id,
+      size: userActions.pickedSize,
+      qty: userActions.pickedQuantity,
+      color:
+        currentProduct?.colors != undefined ? userActions.pickedColor : null,
+    });
+  }, [id, userActions, currentProduct]);
 
   const addProductToCart = () => {
     try {
-      dispatch(
-        addToCart({
-          productId: currentProduct?.id,
-          size: userActions.pickedSize,
-          qty: userActions.pickedQuantity,
-          color:
-            currentProduct?.colors != undefined
-              ? userActions.pickedColor
-              : null,
-        })
-      );
+      dispatch(addToCart(addToCartItem));
       addToCartAlertRef.current?.classList.replace("-bottom-40", "-bottom-20");
       addToCartAlertRef.current?.classList.replace(
         "bg-red-500",
@@ -254,6 +261,18 @@ export default function SelectedItem() {
       }, 3500);
     }
   };
+
+  //  FAVORITE PRODUCT
+
+  const [favProduct, setFavProduct] = useState(false);
+
+  useEffect(() => {
+    if (user?.savedProducts?.liked?.includes(id)) {
+      setFavProduct(true);
+    } else {
+      setFavProduct(false);
+    }
+  }, [user, id]);
 
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
@@ -295,7 +314,19 @@ export default function SelectedItem() {
             </ul>
           ) : null}
         </div>
-        <div className="details pb-4 lg:w-1/2">
+        <div className="details pb-4 lg:w-1/2 lg:pt-3">
+          <Favorite
+            sx={{
+              color: favProduct ? "red" : "gray",
+              marginRight: "6px",
+              fontSize: "200%",
+              marginBottom: "7px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              dispatch(toggleLikeProduct(id));
+            }}
+          />
           <h1 className="font-bold text-3xl mb-1">{currentProduct?.name}</h1>
           <div className="bg-primary-gray flex w-fit gap-2 items-center inset-0 rounded-lg backdrop-blur-3xl shadow-md shadow-primary-gray mb-2">
             <Rating

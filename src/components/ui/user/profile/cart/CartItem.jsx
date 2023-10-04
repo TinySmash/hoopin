@@ -18,7 +18,7 @@ function CartItem(props) {
   return (
     <li
       key={userSavedItems.cart?.indexOf(cartProduct)}
-      className="relative w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/4 min-h-full border-2 border-black p-2 rounded-sm flex-shrink-0"
+      className="relative w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 border-2 border-black p-2 rounded-sm flex-shrink-0"
     >
       <div className="flex w-full justify-between gap-2 mb-14">
         <div className="w-7/12 h-full">
@@ -52,7 +52,7 @@ function CartItem(props) {
               : thisProduct?.pictures[0]
           }
           alt="Picture"
-          className="w-5/12 h-fit p-1 border-2 border-dark-yellow rounded-md  cursor-pointer"
+          className="max-h-32 md:max-h-none md:w-5/12 h-fit p-1 border-2 border-dark-yellow rounded-md  cursor-pointer"
           onClick={() => navigate(`/shop/product-/${cartProduct?.productId}`)}
         />
       </div>
