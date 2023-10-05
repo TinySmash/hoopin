@@ -32,6 +32,10 @@ function User() {
       setSelectedNav(0);
     } else if (currentLocation?.includes("saved-products")) {
       setSelectedNav(1);
+    } else if (currentLocation?.includes("history")) {
+      setSelectedNav(2);
+    } else if (currentLocation?.includes("inbox")) {
+      setSelectedNav(3);
     } else {
       navigate("account");
     }

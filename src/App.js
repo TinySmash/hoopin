@@ -16,6 +16,8 @@ const Login = lazy(() => import("./components/ui/user/Login"));
 const User = lazy(() => import("./components/ui/user/profile/User"));
 const Account = lazy(() => import("./components/ui/user/profile/Account"));
 const Saved = lazy(() => import("./components/ui/user/profile/cart/Saved"));
+const History = lazy(() => import("./components/ui/user/profile/History"));
+const Inbox = lazy(() => import("./components/ui/user/profile/Inbox"));
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -57,6 +59,8 @@ function App() {
               <Route path="/user/:id/:username" element={<User />}>
                 <Route path="account" element={<Account />}></Route>
                 <Route path="saved-products" element={<Saved />}></Route>
+                <Route path="history" element={<History />}></Route>
+                <Route path="inbox" element={<Inbox />}></Route>
               </Route>
               <Route path="/signup" element={<SignUp />}></Route>
               <Route path="/login" element={<Login />}></Route>
