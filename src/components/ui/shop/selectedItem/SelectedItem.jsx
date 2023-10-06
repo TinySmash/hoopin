@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
-import productsData from "../../../data/productsData.json";
+import productsData from "../../../../data/productsData.json";
 import { Rating } from "@mui/material";
-import {
-  CheckCircle,
-  DisabledByDefault,
-  ElectricBolt,
-  Favorite,
-  LocalShipping,
-  People,
-} from "@mui/icons-material";
-import Card from "./Card";
+import { CheckCircle, DisabledByDefault, Favorite } from "@mui/icons-material";
+import SimilarProducts from "./SimilarProducts";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleLikeProduct, addToCart } from "../../reducers/userSlice";
+import { toggleLikeProduct, addToCart } from "../../../reducers/userSlice";
+import ProductReviews from "./ProductReviews";
 
 export default function SelectedItem() {
   const { id } = useParams();
@@ -23,11 +17,7 @@ export default function SelectedItem() {
   const user = useSelector((state) => state.user);
 
   const [currentProduct, setCurrentProduct] = useState({ rating: 0 });
-  const randomDaysAgo = [
-    Math.floor(Math.random() * 365),
-    Math.floor(Math.random() * 365),
-    Math.floor(Math.random() * 365),
-  ]; // Review Date
+
   const [userActions, setUserActions] = useState({
     productImages: [],
     sizeUnit: [],
@@ -36,38 +26,6 @@ export default function SelectedItem() {
     pickedColor: 0,
     similarProducts: [],
   });
-
-  const [reviews, setReviews] = useState([
-    {
-      userName: "Charles",
-      time:
-        randomDaysAgo[0] > 60
-          ? Math.floor(randomDaysAgo[0] / 30) + " months ago"
-          : randomDaysAgo[0] + " days ago",
-      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      rating: (Math.random() * 5).toFixed(1),
-    },
-    {
-      userName: "Achraf Essousy",
-      time:
-        randomDaysAgo[1] > 60
-          ? Math.floor(randomDaysAgo[1] / 30) + " months ago"
-          : randomDaysAgo[1] + " days ago",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      rating: (Math.random() * 5).toFixed(1),
-    },
-    {
-      userName: "Steph Curry",
-      time:
-        randomDaysAgo[2] > 60
-          ? Math.floor(randomDaysAgo[2] / 30) + " months ago"
-          : randomDaysAgo[2] + " days ago",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-      rating: (Math.random() * 5).toFixed(1),
-    },
-  ]);
 
   const productColorsConvert = (e) => {
     switch (e) {
@@ -199,10 +157,6 @@ export default function SelectedItem() {
     }
   };
 
-  // Reviews
-
-  const [ratingValue, setRatingValue] = useState(0);
-
   //   ADD TO CART
 
   const [addToCartSuccess, setAddToCartSuccess] = useState(true);
@@ -289,9 +243,9 @@ export default function SelectedItem() {
       </h1>
       <section className="w-full h-auto min-h-screen lg:flex lg:mt-5 lg:gap-5">
         <div className="mb-6 md:mt-4 lg:w-1/2">
-          <div className="w-[95%] sm:w-3/5 lg:w-[95%] mx-auto sm:w-80% md:w-50% h-auto mb-4">
+          <div className="w-[95%] h-auto sm:h-80 md:h-auto sm:w-auto md:w-3/5 lg:w-[95%] mx-auto md:w-50%  mb-4">
             <img
-              className="w-full lg:w-4/5 h-auto max-h-72 md:max-h-96 border-[3px] border-black rounded-lg mx-auto p-2 "
+              className="w-full sm:w-auto md:w-full lg:w-4/5 h-auto max-h-80 md:max-h-96 border-[3px] border-black rounded-lg mx-auto p-2 "
               src={userActions?.productImages?.[0]}
               loading="lazy"
             ></img>
@@ -447,111 +401,9 @@ export default function SelectedItem() {
       </section>
       <section className="w-full h-auto min-h-screen py-10 ">
         <div className="w-full md:flex gap-5 mb-6">
-          <ul className="list-none w-full md:w-1/2 mt-5 md:mt-0 overflow-x-auto md:border-r-2 border-b-2 border-black flex items-center gap-2 px-3 rounded-md">
-            {userActions?.similarProducts.map((e) => {
-              return (
-                <li
-                  key={e.id}
-                  className="flex-shrink-0" // Prevents the <li> from stretching to full width
-                  onClick={() => {
-                    navigate(`/shop/product-/${e.id}`);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <Card
-                    primaryPicture={e?.pictures?.[0]}
-                    name={e?.name}
-                    price={e?.price}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-          <ul className="list-none w-full md:w-1/2 ">
-            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
-              <LocalShipping sx={{ fontSize: 60 }} />
-              <p className="text-sm sm:text-md">
-                Shipping service for this product is available to your region at
-                the moment for only{" "}
-                <span className="font-semibold text-primary-blue">
-                  {(Math.random() * 35 + 1).toFixed(2)}$
-                </span>
-              </p>
-            </li>
-            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
-              <People sx={{ fontSize: 60 }} />
-              <p>
-                <span className="font-semibold text-primary-blue">
-                  {Math.floor(Math.random() * 75) + 1} people
-                </span>{" "}
-                bought this items and are satisfied about it
-              </p>
-            </li>
-            <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
-              <ElectricBolt sx={{ fontSize: 60 }} />
-              <p>Fast shipping is not available at you region now</p>
-            </li>
-          </ul>
+          <SimilarProducts products={userActions?.similarProducts} />
         </div>
-
-        <div className="relative w-full h-auto border-2 border-black py-2 px-2 sm:px-4 rounded-md max-h-48 md:max-h-64 overflow-y-auto bg-mesh">
-          <form
-            id="reviews-form"
-            action="submit"
-            className="w-full h-auto sm:h-16 py-1 block sm:flex gap-2 sm:items-center"
-          >
-            <textarea
-              type="text"
-              className="w-full sm:w-2/3 md:w-full h-16 sm:h-full bg-transparent border rounded-sm border-black font-thin text-sm p-1 placeholder:text-gray-600"
-              placeholder="Give a small feedback"
-            />
-            <div className="w-full sm:w-fit flex justify-end gap-2 sm:block">
-              <Rating
-                name="simple-controlled"
-                value={ratingValue}
-                onChange={(event, newValue) => {
-                  setRatingValue(newValue);
-                }}
-                size="medium"
-                className=""
-              />
-              <button className="w-fit sm:mx-auto bg-emerald-500 rounded-sm px-3 sm:py-1 md:text-lg ">
-                Submit
-              </button>
-            </div>
-          </form>
-          <ul className="list-none">
-            {reviews?.length > 0
-              ? reviews.map((e) => {
-                  return (
-                    <li
-                      className="w-full h-auto border border-black rounded-sm my-2 px-1 sm:px-2 md:px-4 pb-2 sm:py-2"
-                      key={reviews.indexOf(e)}
-                    >
-                      <div className="w-full flex justify-between px-2 py-1">
-                        <div className="sm:flex sm:items-center sm:gap-2">
-                          <h1 className="font-semibold text-lg sm:text-xl">
-                            {e.userName}
-                          </h1>
-                          <h1 className="font-light text-sm sm:text-md text-slate-500">
-                            {e.time}
-                          </h1>
-                        </div>
-                        <Rating
-                          size="small"
-                          name="half-rating-read"
-                          value={e.rating}
-                          precision={0.1}
-                          readOnly
-                        ></Rating>
-                      </div>
-                      <p>{e.comment}</p>
-                    </li>
-                  );
-                })
-              : null}
-          </ul>
-        </div>
+        <ProductReviews />
       </section>
     </div>
   );

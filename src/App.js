@@ -10,7 +10,9 @@ import NotFound from "./components/ui/NotFound";
 import { SignUp as signUserDataUp } from "./components/reducers/userSlice";
 
 const Shop = lazy(() => import("./components/ui/shop/Shop"));
-const SelectedItem = lazy(() => import("./components/ui/shop/SelectedItem"));
+const SelectedItem = lazy(() =>
+  import("./components/ui/shop/selectedItem/SelectedItem")
+);
 const SignUp = lazy(() => import("./components/ui/user/SignUp"));
 const Login = lazy(() => import("./components/ui/user/Login"));
 const User = lazy(() => import("./components/ui/user/profile/User"));
