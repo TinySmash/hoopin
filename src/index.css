@@ -138,6 +138,10 @@ body::-webkit-scrollbar {
   @apply bg-primary-gray;
 }
 
+.liked-product {
+  @apply animate-ping-once text-red-600;
+}
+
 .shadow-inner-lg {
   box-shadow: inset 0 8px 8px 0 rgb(0 0 0 / 0.05);
 }

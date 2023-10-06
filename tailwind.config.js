@@ -11,7 +11,7 @@ module.exports = {
         "primary-white": "#f1f1f1",
       },
       animation: {
-        // "pulse-once": "pulse 1s 1",
+        "ping-once": "ping 0.6s 1",
       },
     },
   },

@@ -14,15 +14,16 @@ function SimilarProducts(props) {
             <li
               key={e.id}
               className="flex-shrink-0" // Prevents the <li> from stretching to full width
-              onClick={() => {
-                navigate(`/shop/product-/${e.id}`);
-                window.scrollTo(0, 0);
-              }}
+              // onClick={() => {
+              //   navigate(`/shop/product-/${e.id}`);
+              //   window.scrollTo(0, 0);
+              // }}
             >
               <Card
                 primaryPicture={e?.pictures?.[0]}
                 name={e?.name}
                 price={e?.price}
+                id={e?.id}
               />
             </li>
           );

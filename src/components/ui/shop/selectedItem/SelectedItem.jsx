@@ -270,8 +270,8 @@ export default function SelectedItem() {
         </div>
         <div className="details pb-4 lg:w-1/2 lg:pt-3">
           <Favorite
+            className={`${favProduct ? "liked-product" : "text-gray-500"}`}
             sx={{
-              color: favProduct ? "red" : "gray",
               marginRight: "6px",
               fontSize: "200%",
               marginBottom: "7px",
