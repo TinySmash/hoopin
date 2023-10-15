@@ -81,7 +81,7 @@ export default function Navbar() {
             className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center"
             onClick={toggleMenu}
           >
-            <Link>Offers</Link>
+            <Link to="about">About</Link>
           </li>
           <li
             className="w-3/5 mx-auto border-b-2 border-primary-blue p-2 mb-10 text-3xl text-center"
@@ -109,7 +109,9 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link className="cursor-pointer">Offers</Link>
+              <Link className="cursor-pointer" to="about">
+                About
+              </Link>
             </li>
             <li>
               <Link className="cursor-pointer">Support</Link>

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import-normalize;
 
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
 
@@ -251,4 +252,38 @@ body::-webkit-scrollbar {
 .cart-close > ul,
 .cart-close > button {
   @apply hidden;
+}
+
+/*  Alert  */
+
+@keyframes dropdown {
+  4% {
+    @apply top-[68px];
+  }
+  96% {
+    @apply top-[68px];
+  }
+}
+
+.drop-down {
+  animation: dropdown 4s 1;
+}
+
+/*  ABOUT  */
+
+@keyframes typing {
+  50% {
+    opacity: 0%;
+  }
+}
+
+.animation-typing {
+  animation: typing 0.5s infinite;
+}
+
+.bg-about {
+  background-image: url("./components/images/bg.png");
+  background-position: top;
+  background-size: 150%;
+  background-repeat: no-repeat;
 }
