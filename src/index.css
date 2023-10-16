@@ -258,10 +258,10 @@ body::-webkit-scrollbar {
 
 @keyframes dropdown {
   4% {
-    @apply top-[68px];
+    @apply top-[78px];
   }
   96% {
-    @apply top-[68px];
+    @apply top-[78px];
   }
 }
 

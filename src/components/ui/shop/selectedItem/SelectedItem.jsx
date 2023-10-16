@@ -7,6 +7,7 @@ import SimilarProducts from "./SimilarProducts";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLikeProduct, addToCart } from "../../../reducers/userSlice";
 import ProductReviews from "./ProductReviews";
+import Alert from "../../Alert";
 
 export default function SelectedItem() {
   const { id } = useParams();
@@ -177,42 +178,35 @@ export default function SelectedItem() {
     });
   }, [id, userActions, currentProduct]);
 
+  //  ADD TO CART
+
+  const [displayAlert, setDisplayAlert] = useState(false);
+  const [alertParams, setAlertsParams] = useState({ type: "", message: "" });
+
   const addProductToCart = () => {
     try {
       dispatch(addToCart(addToCartItem));
-      addToCartAlertRef.current?.classList.replace("-bottom-40", "-bottom-20");
-      addToCartAlertRef.current?.classList.replace(
-        "bg-red-500",
-        "bg-emerald-500"
-      );
-      addToCartAlertRef.current?.classList.replace(
-        "border-red-800",
-        "border-emerald-800"
-      );
-      setAddToCartSuccess(true);
+
+      setDisplayAlert(false);
       setTimeout(() => {
-        addToCartAlertRef.current?.classList.replace(
-          "-bottom-20",
-          "-bottom-40"
-        );
-      }, 3500);
+        setAlertsParams({ type: "success", message: "item added to cart" });
+        setDisplayAlert(true);
+        setTimeout(() => {
+          setDisplayAlert(false);
+        }, 4000);
+      }, 200);
     } catch (e) {
-      addToCartAlertRef.current?.classList.replace("-bottom-40", "-bottom-20");
-      addToCartAlertRef.current?.classList.replace(
-        "bg-emerald-500",
-        "bg-red-500"
-      );
-      addToCartAlertRef.current?.classList.replace(
-        "border-emerald-800",
-        "border-red-800"
-      );
-      setAddToCartSuccess(false);
+      setDisplayAlert(false);
       setTimeout(() => {
-        addToCartAlertRef.current?.classList.replace(
-          "-bottom-20",
-          "-bottom-40"
-        );
-      }, 3500);
+        setAlertsParams({
+          type: "error",
+          message: "Error while adding to cart",
+        });
+        setDisplayAlert(true);
+        setTimeout(() => {
+          setDisplayAlert(false);
+        }, 4000);
+      }, 200);
     }
   };
 
@@ -230,6 +224,9 @@ export default function SelectedItem() {
 
   return (
     <div className="bg-product-page w-full h-auto min-h-screen px-7 sm:px-10 lg:px-20 pt-20">
+      {displayAlert && (
+        <Alert type={alertParams.type} message={alertParams.message} />
+      )}
       <h1
         className="w-fit h-36 flex items-start gap-3 px-3 py-2 fixed -bottom-40 right-3 border-2 border-emerald-800 bg-emerald-500 text-3xl text-primary-white font-bold rounded-md z-50 transition-all duration-300"
         ref={addToCartAlertRef}

@@ -25,22 +25,20 @@ const About = lazy(() => import("./components/ui/About"));
 function App() {
   const user = useSelector((state) => state.user);
 
-  const userIdToken = localStorage.getItem("userToken");
+  const userinfo = localStorage.getItem("user");
+  const userLocalData = JSON.parse(userinfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userIdToken) {
+    if (userLocalData?.token) {
       dispatch(
         signUserDataUp({
           isConnected: true,
-          userId: userIdToken.split(" ")?.[1],
-          fullName: {
-            firstName: "islam",
-            familyName: "El gueniari",
-          },
-          username: "tinys_smash_",
-          email: "islam.gueniari@gmail.com",
-          password: "TinySmash2005",
+          userId: userLocalData?.userId,
+          fullName: userLocalData?.fullName,
+          username: userLocalData?.username,
+          email: userLocalData?.email,
+          password: userLocalData?.password,
         })
       );
     }

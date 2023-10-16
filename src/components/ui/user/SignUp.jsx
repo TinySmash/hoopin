@@ -99,6 +99,12 @@ function SignUp() {
           if (firstCaseDone) {
             if (usernameRegex.test(userSignUpInfo.username) == true) {
               const randomUserId = generateRandomString(16);
+              let userDataToStore = JSON.stringify({
+                ...userSignUpInfo,
+                userId: randomUserId,
+                token: userSignUpInfo.username + " " + randomUserId,
+                isConnected: undefined,
+              });
               dispatch(
                 signUserDataUp({
                   ...userSignUpInfo,
@@ -106,10 +112,7 @@ function SignUp() {
                   userId: randomUserId,
                 })
               );
-              localStorage.setItem(
-                "userToken",
-                userSignUpInfo.username + " " + randomUserId
-              );
+              localStorage.setItem("user", userDataToStore);
             } else {
               errMsgRef.current[3].classList?.remove("hidden");
             }

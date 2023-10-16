@@ -40,15 +40,15 @@ function About() {
     const phoneNumber = "+212 682-839818";
     navigator.clipboard.writeText(phoneNumber).then(() => {
       setAlertCount(false);
-      setAlertProps({
-        message: "Phone number copied to clipboard",
-        type: "success",
-      });
       setTimeout(() => {
+        setAlertProps({
+          message: "Phone number copied to clipboard",
+          type: "success",
+        });
         setAlertCount(true);
         setTimeout(() => {
           setAlertCount(false);
-        }, 5000);
+        }, 4000);
       }, 100);
     });
   };
@@ -57,17 +57,16 @@ function About() {
     const email = "islam.gueniari@gmail.com";
     navigator.clipboard.writeText(email).then(() => {
       setAlertCount(false);
-
-      setAlertProps({
-        message: "Email adress copied to clipboard",
-        type: "success",
-      });
       setTimeout(() => {
+        setAlertProps({
+          message: "Email adress copied to clipboard",
+          type: "success",
+        });
         setAlertCount(true);
         setTimeout(() => {
           setAlertCount(false);
-        }, 5000);
-      }, 300);
+        }, 4000);
+      }, 100);
     });
   };
 

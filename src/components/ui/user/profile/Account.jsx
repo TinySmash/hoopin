@@ -54,7 +54,7 @@ function Account() {
           </h1>
           <h1 className="text-xl md:text-2xl text-gray-500 mb-3">
             #
-            {user.loginInfo.userId.replace(
+            {user.loginInfo.userId?.replace(
               user.loginInfo.userId.substring(3, 12),
               "*********"
             )}
