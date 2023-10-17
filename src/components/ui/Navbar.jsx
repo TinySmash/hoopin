@@ -132,7 +132,7 @@ export default function Navbar() {
             <ShoppingCartRounded></ShoppingCartRounded>
           </button>
           <button
-            className="flex items-center justify-center  w-fit p-[10px] h-full rounded-full bg-primary-gray cursor-pointer"
+            className="flex items-center justify-center w-fit p-[10px] h-full rounded-full bg-primary-gray cursor-pointer"
             onClick={() => {
               !userLoginInfo.isConnected
                 ? navigate("/signup")
@@ -141,7 +141,7 @@ export default function Navbar() {
                   );
             }}
           >
-            <Person sx={{ fontSize: "30px" }}></Person>
+            <Person sx={{ fontSize: "27px" }}></Person>
           </button>
         </div>
       </header>
