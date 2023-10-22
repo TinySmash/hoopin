@@ -1,12 +1,18 @@
-import React from 'react';
-import shoes from '../images/shoes.png';
-import sec2 from '../images/sec2.png';
-import sec3 from '../images/sec3.png';
-
+import React, { useRef } from "react";
+import shoes from "../images/shoes.png";
+import sec2 from "../images/sec2.png";
+import sec3 from "../images/sec3.png";
+import productData from "../../data/productsData.json";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-
-
+  const listSectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: listSectionRef,
+    offset: ["-0.4 1.2", "1.2 1"],
+  });
+  const listX = useTransform(scrollYProgress, [0, 1], ["150%", "-100%"]);
   return (
     <React.Fragment>
       <section className="w-full h-screen relative bg-homepage-section-1 px-7 sm:px-10 lg:px-20">
@@ -37,7 +43,6 @@ export default function Hero() {
             loading="lazy"
           />
           <ul className="list-none w-full relative md:w-1/2 lg:w-2/5">
-            {/* md:top-[84pex] */}
             <li className=" w-[90%]  h-56 md:h-fit border-2 border-black mb-6 md:mb-3 mx-auto rounded-3xl text-center px-2 py-5 md:py-3 bg-nav-primary-gray backdrop-blur-md">
               <h1 className="text-dark-yellow text-3xl font-bold mb-4">
                 Comfort
@@ -53,7 +58,7 @@ export default function Hero() {
                 Hybrid
               </h1>
               <p className="text-sm sm:text-lg ">
-                {' '}
+                {" "}
                 Blends elements of Kyrie Irving's signature shoe with the iconic
                 design of Kobe Bryant's shoes. This fusion results in a unique
                 shoe that offers both comfort and style for basketball.
@@ -71,41 +76,102 @@ export default function Hero() {
             </li>
           </ul>
         </section>
-        <section className="w-full h-auto md:h-screen relative px-7 sm:px-10 lg:px-20 py-5 ">
-          <div className="md:absolute w-full md:w-1/2 right-10 lg:right-20 my-5 md:my-0 md:top-20 p-2 sm:p-5 md:bg-nav-primary-gray md:backdrop-blur-md rounded-lg text-center md:text-start">
-            <h1 className="text-3xl sm:text-5xl text-dark-yellow font-semibold mb-5">
-              Nike Exclusive for the first time
-            </h1>
-            <h2 className="text-2xl sm:text-3xl font-semibold leading-relaxed mb-8">
-              Kyrie 3 Mamba mentality. <br />
-              <span className="underline underline-offset-4">120$</span>
-            </h2>
-            <p className="hidden md:flex">
-              The famous quote by Bruce Lee, "Be yourself. Express yourself.
-              Have faith in yourself," strongly influenced Kyrie Irving and Kobe
-              Bryant. It inspired the Mamba Mentality and is reflected in the
-              KYRIE 3 Mamba Mentality shoes, paying tribute to Bruce Lee and
-              Kobe. The colorway and design symbolize their connection,
-              featuring elements like Bruce Lee's colors and a samurai-inspired
-              pattern. The shoe's tongue bears the Kyrobe logo, combining Bryant
-              and Irving's logos.
-            </p>
+        <section
+          className="w-full h-auto md:h-screen relative px-7 sm:px-10 lg:px-20 py-5 "
+          ref={listSectionRef}
+        >
+          <motion.ul
+            className="list-none flex gap-4 w-[130%] md:w-full overflow-x-auto"
+            style={{ x: listX }}
+            initial={{ x: "200%" }}
+            drag
+            dragConstraints={{ right: 25, left: -25, top: 0, bottom: 0 }}
+          >
+            <li className="w-1/4 md:w-1/5 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+              <Link to="/shop" className="w-full h-full">
+                <img
+                  src={productData?.products?.[1]?.pictures?.[0]}
+                  alt=""
+                  className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
+                />
+                <h1 className="font-semibold text-2xl text-dark-yellow">
+                  Jerseys
+                </h1>
+              </Link>
+            </li>
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+              <Link to="/shop" className="w-full h-full">
+                <img
+                  src={productData?.products?.[8]?.pictures?.[0]}
+                  alt=""
+                  className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
+                />
+                <h1 className="font-semibold text-2xl text-dark-yellow">
+                  Shoes
+                </h1>
+              </Link>
+            </li>
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+              <Link to="/shop" className="w-full h-full">
+                <img
+                  src={productData?.products?.[4]?.pictures?.[0]}
+                  alt=""
+                  className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
+                />
+                <h1 className="font-semibold text-2xl text-dark-yellow">
+                  Basketballs
+                </h1>
+              </Link>
+            </li>
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+              <Link to="/shop" className="w-full h-full">
+                <img
+                  src={productData?.products?.[14]?.pictures?.[0]}
+                  alt=""
+                  className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
+                />
+                <h1 className="font-semibold text-2xl text-dark-yellow">
+                  Gear
+                </h1>
+              </Link>
+            </li>
+          </motion.ul>
+          <div className="w-full h-auto md:flex md:justify-between mt-5">
+            <div className=" w-full md:w-1/2 my-5 md:my-0 p-2 sm:p-5 md:bg-nav-primary-gray md:backdrop-blur-md rounded-lg text-center md:text-start">
+              <h1 className="text-3xl sm:text-5xl text-dark-yellow font-semibold mb-5">
+                Nike Exclusive for the first time
+              </h1>
+              <h2 className="text-2xl sm:text-3xl font-semibold leading-relaxed mb-8">
+                Kyrie 3 Mamba mentality. <br />
+                <span className="underline underline-offset-4">120$</span>
+              </h2>
+              <p className="hidden md:flex">
+                The famous quote by Bruce Lee, "Be yourself. Express yourself.
+                Have faith in yourself," strongly influenced Kyrie Irving and
+                Kobe Bryant. It inspired the Mamba Mentality and is reflected in
+                the KYRIE 3 Mamba Mentality shoes, paying tribute to Bruce Lee
+                and Kobe. The colorway and design symbolize their connection,
+                featuring elements like Bruce Lee's colors and a
+                samurai-inspired pattern. The shoe's tongue bears the Kyrobe
+                logo, combining Bryant and Irving's logos.
+              </p>
+            </div>
+            <img
+              src={sec3}
+              className="w-2/3 md:w-1/3 relative mx-auto md:mx-0  rounded-md"
+              alt=""
+              loading="lazy"
+            />
           </div>
-          <img
-            src={sec3}
-            className="w-2/3 md:w-1/3 relative mx-auto md:mx-0 md:top-20 rounded-md"
-            alt=""
-            loading="lazy"
-          />
         </section>
       </section>
       <section className="w-full h-screen px-7 sm:px-10 lg:px-20 py-5 bg-primary-gray bg-homepage-section-4 relative">
         <div className="w-full text-center center-both px-2 sm:px-10 lg:px-20">
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold leading-snug md:leading-[1.5] mb-7">
-            Discover more basketball shoes & other at{' '}
+            Discover more basketball shoes & other at{" "}
             <span className="text-primary-blue text-3xl sm:text-4xl md:text-6xl">
               Hoopin'
-            </span>{' '}
+            </span>{" "}
             <br /> <span className="text-dark-yellow">+ Special offers</span>
           </h1>
           <button className="text-3xl text-white bg-primary-blue font-bold px-6 py-3 rounded-full">
