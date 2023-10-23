@@ -10,7 +10,7 @@ export default function Hero() {
   const listSectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: listSectionRef,
-    offset: ["-0.4 1.2", "1.2 1"],
+    offset: ["-0.2 1.3", "1.2 1"],
   });
   const listX = useTransform(scrollYProgress, [0, 1], ["150%", "-100%"]);
   return (
@@ -81,7 +81,7 @@ export default function Hero() {
           ref={listSectionRef}
         >
           <motion.ul
-            className="list-none relative flex gap-4 w-[130%] md:w-full overflow-x-auto"
+            className="list-none relative flex gap-4 w-[145%] md:w-full overflow-x-auto"
             style={{ x: listX }}
             initial={{ x: "200%" }}
             drag
@@ -94,7 +94,7 @@ export default function Hero() {
                   alt=""
                   className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
                 />
-                <h1 className="font-semibold text-2xl text-dark-yellow">
+                <h1 className="font-semibold text-xl sm:text-2xl text-dark-yellow">
                   Jerseys
                 </h1>
               </Link>
@@ -106,7 +106,7 @@ export default function Hero() {
                   alt=""
                   className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
                 />
-                <h1 className="font-semibold text-2xl text-dark-yellow">
+                <h1 className="font-semibold text-xl sm:text-2xl text-dark-yellow">
                   Shoes
                 </h1>
               </Link>
@@ -118,7 +118,7 @@ export default function Hero() {
                   alt=""
                   className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
                 />
-                <h1 className="font-semibold text-2xl text-dark-yellow">
+                <h1 className="font-semibold text-xl sm:text-2xl text-dark-yellow">
                   Basketballs
                 </h1>
               </Link>
@@ -130,7 +130,7 @@ export default function Hero() {
                   alt=""
                   className="w-full h-2/3 md:h-3/4 rounded-md mb-4"
                 />
-                <h1 className="font-semibold text-2xl text-dark-yellow">
+                <h1 className="font-semibold text-xl sm:text-2xl text-dark-yellow">
                   Gear
                 </h1>
               </Link>
