@@ -47,7 +47,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <React.Fragment>
+        <div className="absolute w-full overflow-x-hidden">
           <Navbar />
           <Suspense fallback={<Loading />}>
             <Routes>
@@ -70,7 +70,7 @@ function App() {
             </Routes>
             <Footer />
           </Suspense>
-        </React.Fragment>
+        </div>
       </Router>
     </Provider>
   );

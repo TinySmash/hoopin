@@ -81,13 +81,13 @@ export default function Hero() {
           ref={listSectionRef}
         >
           <motion.ul
-            className="list-none flex gap-4 w-[130%] md:w-full overflow-x-auto"
+            className="list-none relative flex gap-4 w-[130%] md:w-full overflow-x-auto"
             style={{ x: listX }}
             initial={{ x: "200%" }}
             drag
             dragConstraints={{ right: 25, left: -25, top: 0, bottom: 0 }}
           >
-            <li className="w-1/4 md:w-1/5 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+            <li className="w-1/4 md:w-1/5 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
               <Link to="/shop" className="w-full h-full">
                 <img
                   src={productData?.products?.[1]?.pictures?.[0]}
@@ -99,7 +99,7 @@ export default function Hero() {
                 </h1>
               </Link>
             </li>
-            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
               <Link to="/shop" className="w-full h-full">
                 <img
                   src={productData?.products?.[8]?.pictures?.[0]}
@@ -111,7 +111,7 @@ export default function Hero() {
                 </h1>
               </Link>
             </li>
-            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
               <Link to="/shop" className="w-full h-full">
                 <img
                   src={productData?.products?.[4]?.pictures?.[0]}
@@ -123,7 +123,7 @@ export default function Hero() {
                 </h1>
               </Link>
             </li>
-            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer">
+            <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
               <Link to="/shop" className="w-full h-full">
                 <img
                   src={productData?.products?.[14]?.pictures?.[0]}
