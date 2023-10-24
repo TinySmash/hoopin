@@ -29,20 +29,36 @@ const productsSlice = createSlice({
           state.filterProducts.byCategory.categories.filter((e) => e !== "All");
         state.filterProducts.byCategory.categories.push(action.payload);
       } else {
-        state.filterProducts.byCategory.categories.push(action.payload);
+        if (
+          !state.filterProducts.byCategory.categories.includes(action.payload)
+        ) {
+          state.filterProducts.byCategory.categories.push(action.payload);
+        } else {
+          if (state.filterProducts.byCategory.categories.length > 1) {
+            state.filterProducts.byCategory.categories.splice(
+              state.filterProducts.byCategory.categories.indexOf(
+                action.payload
+              ),
+              1
+            );
+          } else if (state.filterProducts.byCategory.categories.length == 1) {
+            state.filterProducts.byCategory.enabled = false;
+            state.filterProducts.byCategory.categories = ["All"];
+          }
+        }
       }
     },
-    unfilterProductsByCategory(state, action) {
-      if (state.filterProducts.byCategory.categories.length > 1) {
-        state.filterProducts.byCategory.categories.splice(
-          state.filterProducts.byCategory.categories.indexOf(action.payload),
-          1
-        );
-      } else if (state.filterProducts.byCategory.categories.length == 1) {
-        state.filterProducts.byCategory.enabled = false;
-        state.filterProducts.byCategory.categories = ["All"];
-      }
-    },
+    // unfilterProductsByCategory(state, action) {
+    //   if (state.filterProducts.byCategory.categories.length > 1) {
+    //     state.filterProducts.byCategory.categories.splice(
+    //       state.filterProducts.byCategory.categories.indexOf(action.payload),
+    //       1
+    //     );
+    //   } else if (state.filterProducts.byCategory.categories.length == 1) {
+    //     state.filterProducts.byCategory.enabled = false;
+    //     state.filterProducts.byCategory.categories = ["All"];
+    //   }
+    // },
     filterBySearchInput(state, action) {
       if (state.filterProducts.bySearchInput.enabled == false) {
         state.filterProducts.bySearchInput.enabled = true;

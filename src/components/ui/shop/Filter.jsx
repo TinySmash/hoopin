@@ -1,60 +1,45 @@
-import { Cancel } from '@mui/icons-material';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Cancel } from "@mui/icons-material";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filterProductsByCategory,
-  unfilterProductsByCategory,
   filterBySearchInput,
   unfilterBySearchInput,
   filterByPriceRange,
-  sortBy
-} from '../../reducers/productSlice';
+  sortBy,
+} from "../../reducers/productSlice";
 
 export default function Filter(props) {
-  const filterRef = useRef('');
+  const filterRef = useRef("");
   const [initialRender, setInitialRender] = useState(true);
   const categoryButtonRefs = useRef([]);
 
-  const filterProducts = useSelector(state => state.Products.filterProducts);
+  const filterProducts = useSelector((state) => state.Products.filterProducts);
   const dispatch = useDispatch();
-
-  //   FILTER BY CATEGORY
-
-  const filterByCategory = (category, index) => {
-    console.log('filter by category function done ');
-    if (filterProducts.byCategory.categories.includes(category) == false) {
-      categoryButtonRefs.current[index]?.classList?.replace('px-5', 'px-10');
-      dispatch(filterProductsByCategory(category));
-    } else {
-      categoryButtonRefs.current[index]?.classList?.replace('px-10', 'px-5');
-      dispatch(unfilterProductsByCategory(category));
-    }
-    categoryButtonRefs.current[index]?.classList?.toggle('border-dark-yellow');
-  };
 
   // FILTER BY SEARCH INPUT
 
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
-  let inputValue = '';
+  let inputValue = "";
 
-  const filterBySearch = e => {
-    console.log('filter by search function done ');
+  const filterBySearch = (e) => {
+    console.log("filter by search function done ");
     inputValue = e.target.value;
     setSearchInput(e.target.value);
-    if (inputValue !== '') {
+    if (inputValue !== "") {
       dispatch(filterBySearchInput(inputValue));
-    } else if (inputValue == '') {
+    } else if (inputValue == "") {
       dispatch(unfilterBySearchInput());
     }
   };
 
-  const searchInputRef = useRef('');
+  const searchInputRef = useRef("");
 
   const clearSearchInput = () => {
-    searchInputRef.current.value = '';
-    setSearchInput('');
-    inputValue = '';
+    searchInputRef.current.value = "";
+    setSearchInput("");
+    inputValue = "";
     dispatch(unfilterBySearchInput());
   };
 
@@ -63,10 +48,10 @@ export default function Filter(props) {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 9999999 });
 
   const filterByPrice = (e, pole) => {
-    console.log('filter by price function done ');
+    console.log("filter by price function done ");
     const priceInputValue = e.target.value;
-    if (pole == 'min') {
-      if (priceInputValue == '') {
+    if (pole == "min") {
+      if (priceInputValue == "") {
         setPriceRange({ ...priceRange, min: 0 });
         dispatch(filterByPriceRange({ min: 0, max: priceRange.max }));
       } else {
@@ -75,8 +60,8 @@ export default function Filter(props) {
           filterByPriceRange({ min: priceInputValue, max: priceRange.max })
         );
       }
-    } else if ((pole = 'max')) {
-      if (priceInputValue == '') {
+    } else if ((pole = "max")) {
+      if (priceInputValue == "") {
         setPriceRange({ ...priceRange, max: 9999999 });
         dispatch(filterByPriceRange({ min: priceRange.min, max: 9999999 }));
       } else {
@@ -90,8 +75,8 @@ export default function Filter(props) {
 
   //   SORT BY
 
-  const sortItems = by => {
-    console.log('filter by sorting method function done ');
+  const sortItems = (by) => {
+    console.log("filter by sorting method function done ");
     dispatch(sortBy(by));
   };
 
@@ -102,9 +87,9 @@ export default function Filter(props) {
     }
 
     if (props?.isOpened === true) {
-      filterRef.current.classList?.remove('-translate-x-full');
+      filterRef.current.classList?.remove("-translate-x-full");
     } else if (props?.isOpened === false) {
-      filterRef.current.classList?.add('-translate-x-full');
+      filterRef.current.classList?.add("-translate-x-full");
     }
   }, [props]);
 
@@ -120,14 +105,14 @@ export default function Filter(props) {
           placeholder="search product name"
           ref={searchInputRef}
           value={searchInput}
-          onChange={e => filterBySearch(e)}
+          onChange={(e) => filterBySearch(e)}
         />
-        {searchInput !== '' ? (
+        {searchInput !== "" ? (
           <button
             className="w-1/6 h-full bg-transparent cursor-pointer outline-none"
             onClick={clearSearchInput}
           >
-            <Cancel sx={{ fontSize: 20, color: 'gray' }}></Cancel>
+            <Cancel sx={{ fontSize: 20, color: "gray" }}></Cancel>
           </button>
         ) : null}
       </div>
@@ -136,30 +121,50 @@ export default function Filter(props) {
       </h1>
       <ul className="w-full h-auto list-none mb-6">
         <li
-          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
-          ref={e => (categoryButtonRefs.current[0] = e)}
-          onClick={() => filterByCategory('shoes', 0)}
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+            filterProducts?.byCategory?.categories.includes("shoes")
+              ? "px-10 border-dark-yellow"
+              : "px-5 border-black"
+          }`}
+          ref={(e) => (categoryButtonRefs.current[0] = e)}
+          onClick={() => dispatch(filterProductsByCategory("shoes"))}
         >
           Shoes
         </li>
         <li
-          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
-          ref={e => (categoryButtonRefs.current[1] = e)}
-          onClick={() => filterByCategory('basketballs', 1)}
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+            filterProducts?.byCategory?.categories.includes("basketballs")
+              ? "px-10 border-dark-yellow"
+              : "px-5 border-black"
+          }`}
+          ref={(e) => (categoryButtonRefs.current[1] = e)}
+          onClick={() => dispatch(filterProductsByCategory("basketballs"))}
         >
           Basketballs
         </li>
         <li
-          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
-          ref={e => (categoryButtonRefs.current[2] = e)}
-          onClick={() => filterByCategory('jerseys', 2)}
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+            filterProducts?.byCategory?.categories.includes("jerseys")
+              ? "px-10 border-dark-yellow"
+              : "px-5 border-black"
+          }`}
+          ref={(e) => (categoryButtonRefs.current[2] = e)}
+          onClick={() => dispatch(filterProductsByCategory("jerseys"))}
         >
           Jerseys
         </li>
         <li
-          className="w-full h-auto relative px-5 py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer"
-          ref={e => (categoryButtonRefs.current[3] = e)}
-          onClick={() => filterByCategory('clothes & equipment', 3)}
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+            filterProducts?.byCategory?.categories.includes(
+              "clothes & equipment"
+            )
+              ? "px-10 border-dark-yellow"
+              : "px-5 border-black"
+          }`}
+          ref={(e) => (categoryButtonRefs.current[3] = e)}
+          onClick={() =>
+            dispatch(filterProductsByCategory("clothes & equipment"))
+          }
         >
           clothes & equipment
         </li>
@@ -170,19 +175,19 @@ export default function Filter(props) {
           type="text"
           className="w-24 h-auto border border-black bg-transparent px-2 placeholder:text-neutral-600 outline-none rounded-md"
           placeholder="min"
-          onChange={e => filterByPrice(e, 'min')}
+          onChange={(e) => filterByPrice(e, "min")}
         />
         <input
           type="text"
           className="w-24 h-auto border border-black bg-transparent px-2 placeholder:text-neutral-600 outline-none rounded-md"
           placeholder="max"
-          onChange={e => filterByPrice(e, 'max')}
+          onChange={(e) => filterByPrice(e, "max")}
         />
       </div>
       <h1 className="ml-3 text-xl font-bold mb-3 text-primary-blue">Sort by</h1>
       <select
         className="text-center w-full h-auto bg-transparent outline-none border border-black rounded-md"
-        onChange={e => sortItems(e.target.value)}
+        onChange={(e) => sortItems(e.target.value)}
       >
         <option value="BY_ID">None</option>
         <option value="BY_ALPHABET">Alphabet</option>

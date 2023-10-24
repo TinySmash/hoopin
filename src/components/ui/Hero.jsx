@@ -5,6 +5,8 @@ import sec3 from "../images/sec3.png";
 import productData from "../../data/productsData.json";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { filterProductsByCategory } from "../reducers/productSlice";
 
 export default function Hero() {
   const listSectionRef = useRef(null);
@@ -13,6 +15,10 @@ export default function Hero() {
     offset: ["-0.2 1.3", "1.2 1"],
   });
   const listX = useTransform(scrollYProgress, [0, 1], ["150%", "-100%"]);
+
+  // FILTER
+  const dispatch = useDispatch();
+
   return (
     <React.Fragment>
       <section className="w-full h-screen relative bg-homepage-section-1 px-7 sm:px-10 lg:px-20">
@@ -88,7 +94,11 @@ export default function Hero() {
             dragConstraints={{ right: 25, left: -25, top: 0, bottom: 0 }}
           >
             <li className="w-1/4 md:w-1/5 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
-              <Link to="/shop" className="w-full h-full">
+              <Link
+                to="/shop"
+                onClick={() => dispatch(filterProductsByCategory("jerseys"))}
+                className="w-full h-full"
+              >
                 <img
                   src={productData?.products?.[1]?.pictures?.[0]}
                   alt=""
@@ -100,7 +110,11 @@ export default function Hero() {
               </Link>
             </li>
             <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
-              <Link to="/shop" className="w-full h-full">
+              <Link
+                to="/shop"
+                onClick={() => dispatch(filterProductsByCategory("shoes"))}
+                className="w-full h-full"
+              >
                 <img
                   src={productData?.products?.[8]?.pictures?.[0]}
                   alt=""
@@ -112,7 +126,13 @@ export default function Hero() {
               </Link>
             </li>
             <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
-              <Link to="/shop" className="w-full h-full">
+              <Link
+                to="/shop"
+                onClick={() =>
+                  dispatch(filterProductsByCategory("basketballs"))
+                }
+                className="w-full h-full"
+              >
                 <img
                   src={productData?.products?.[4]?.pictures?.[0]}
                   alt=""
@@ -124,7 +144,13 @@ export default function Hero() {
               </Link>
             </li>
             <li className="w-1/4 h-52 md:h-72 border-2 border-black rounded-lg text-center p-2 cursor-pointer backdrop-blur-md">
-              <Link to="/shop" className="w-full h-full">
+              <Link
+                to="/shop"
+                onClick={() =>
+                  dispatch(filterProductsByCategory("clothes & equipment"))
+                }
+                className="w-full h-full"
+              >
                 <img
                   src={productData?.products?.[14]?.pictures?.[0]}
                   alt=""
