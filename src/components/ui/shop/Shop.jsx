@@ -4,9 +4,11 @@ import Card from "./Card";
 import Filter from "./Filter";
 import productsData from "../../../data/productsData.json";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { unfilterProductsByCategory } from "../../reducers/productSlice";
+// import { Link } from "react-router-dom";
 
 export default function Shop() {
+  const dispatch = useDispatch();
   const [filterOpened, setFilterOpened] = useState(false);
   const filterIconRef = useRef("");
   const [initialIconRender, setInitialIconRender] = useState(true);
@@ -62,6 +64,12 @@ export default function Shop() {
     filterPriceRange,
     itemsSortedBy,
   ]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(unfilterProductsByCategory());
+    };
+  }, []);
 
   return (
     <div className="w-full h-auto min-h-screen bg-primary-gray pt-20 bg-shop">
