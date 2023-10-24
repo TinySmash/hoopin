@@ -26,12 +26,15 @@ export default function Hero() {
           <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-3 md:mb-6 ">
             Explore The New Kyrie 3
           </h1>
-          <h1 className="text-5xl lg:text-[4.25rem] font-bold text-primary-blue mb-4 md:mb-10">
+          <h1 className="text-5xl lg:text-[4.25rem] font-bold text-primary-blue mb-8 md:mb-10">
             Bruce LEE
           </h1>
-          <button className="w-52 h-auto text-3xl text-white bg-primary-blue font-bold px-4 py-3 rounded-full">
+          <Link
+            className="w-52 h-auto text-3xl text-white bg-primary-blue font-bold px-10 py-3 rounded-full"
+            to="/shop/product-/9"
+          >
             BUY NOW
-          </button>
+          </Link>
         </div>
         <img
           src={shoes}
@@ -200,9 +203,12 @@ export default function Hero() {
             </span>{" "}
             <br /> <span className="text-dark-yellow">+ Special offers</span>
           </h1>
-          <button className="text-3xl text-white bg-primary-blue font-bold px-6 py-3 rounded-full">
+          <Link
+            className="text-3xl text-white bg-primary-blue font-bold px-6 py-2 rounded-full"
+            to="/shop"
+          >
             Explore Now
-          </button>
+          </Link>
         </div>
       </section>
     </React.Fragment>

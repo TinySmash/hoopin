@@ -90,8 +90,6 @@ export default function SelectedItem() {
 
   //    USER ACTIONS
 
-  // console.log(userActions.sizeUnit?.indexOf(userActions.pickedSize));
-
   const incrementSize = () => {
     let sizeIndex = userActions.sizeUnit?.indexOf(userActions.pickedSize);
     if (userActions.sizeUnit[sizeIndex + 1] != undefined) {
@@ -215,7 +213,7 @@ export default function SelectedItem() {
   const [favProduct, setFavProduct] = useState(false);
 
   useEffect(() => {
-    if (user?.savedProducts?.liked?.includes(id)) {
+    if (user?.savedProducts?.liked?.includes(Number(id))) {
       setFavProduct(true);
     } else {
       setFavProduct(false);
@@ -275,7 +273,7 @@ export default function SelectedItem() {
               cursor: "pointer",
             }}
             onClick={() => {
-              dispatch(toggleLikeProduct(id));
+              dispatch(toggleLikeProduct(Number(id)));
             }}
           />
           <h1 className="font-bold text-3xl mb-1">{currentProduct?.name}</h1>
