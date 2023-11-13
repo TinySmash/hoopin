@@ -129,7 +129,7 @@ export default function Filter(props) {
       </h1>
       <ul className="w-full h-auto list-none mb-6">
         <li
-          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 lg:hover:px-10 lg:hover:border-dark-yellow cursor-pointer ${
             categoryFilter.includes("shoes")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
@@ -140,7 +140,7 @@ export default function Filter(props) {
           Shoes
         </li>
         <li
-          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 lg:hover:px-10 lg:hover:border-dark-yellow cursor-pointer ${
             categoryFilter.includes("basketballs")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
@@ -151,7 +151,7 @@ export default function Filter(props) {
           Basketballs
         </li>
         <li
-          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 lg:hover:px-10 lg:hover:border-dark-yellow cursor-pointer ${
             categoryFilter.includes("jerseys")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
@@ -162,7 +162,7 @@ export default function Filter(props) {
           Jerseys
         </li>
         <li
-          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
+          className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 lg:hover:px-10 lg:hover:border-dark-yellow cursor-pointer ${
             categoryFilter.includes("clothes & equipment")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
