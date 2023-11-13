@@ -17,6 +17,14 @@ export default function Filter(props) {
   const filterProducts = useSelector((state) => state.Products.filterProducts);
   const dispatch = useDispatch();
 
+  //  FILTER BY CATEGORY
+
+  const [categoryFilter, setCategoryFilter] = useState([]);
+
+  useEffect(() => {
+    setCategoryFilter(filterProducts?.byCategory?.categories);
+  }, [filterProducts]);
+
   // FILTER BY SEARCH INPUT
 
   const [searchInput, setSearchInput] = useState("");
@@ -122,7 +130,7 @@ export default function Filter(props) {
       <ul className="w-full h-auto list-none mb-6">
         <li
           className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
-            filterProducts?.byCategory?.categories.includes("shoes")
+            categoryFilter.includes("shoes")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
           }`}
@@ -133,7 +141,7 @@ export default function Filter(props) {
         </li>
         <li
           className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
-            filterProducts?.byCategory?.categories.includes("basketballs")
+            categoryFilter.includes("basketballs")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
           }`}
@@ -144,7 +152,7 @@ export default function Filter(props) {
         </li>
         <li
           className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
-            filterProducts?.byCategory?.categories.includes("jerseys")
+            categoryFilter.includes("jerseys")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
           }`}
@@ -155,9 +163,7 @@ export default function Filter(props) {
         </li>
         <li
           className={`w-full h-auto relative py-1 rounded-lg mb-2 border-2 border-black transition-all duration-150 hover:px-10 hover:border-dark-yellow cursor-pointer ${
-            filterProducts?.byCategory?.categories.includes(
-              "clothes & equipment"
-            )
+            categoryFilter.includes("clothes & equipment")
               ? "px-10 border-dark-yellow"
               : "px-5 border-black"
           }`}
