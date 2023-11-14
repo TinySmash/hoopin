@@ -23,7 +23,7 @@ function Alert(props) {
   return (
     <h1
       ref={alertRef}
-      className={`w-5/6 py-2 left-[8.3333%] fixed flex gap-2 justify-center text-primary-white rounded-sm -top-16 drop-down z-50 ${messageParams?.color}`}
+      className={`w-5/6 py-2 left-[8.3333%] fixed lg:text-3xl flex gap-2 justify-center items-center text-primary-white rounded-sm -top-16 drop-down z-50 ${messageParams?.color}`}
     >
       {messageParams?.icon}
       {message}

@@ -32,7 +32,7 @@ function SimilarProducts(props) {
       <ul className="list-none w-full md:w-1/2 ">
         <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
           <LocalShipping sx={{ fontSize: 60 }} />
-          <p className="text-sm sm:text-md">
+          <p className="text-sm sm:text-md lg:text-xl">
             Shipping service for this product is available to your region at the
             moment for only{" "}
             <span className="font-semibold text-primary-blue">
@@ -43,7 +43,7 @@ function SimilarProducts(props) {
         <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
           <People sx={{ fontSize: 60 }} />
           <p>
-            <span className="font-semibold text-primary-blue">
+            <span className="font-semibold text-primary-blue lg:text-xl">
               {Math.floor(Math.random() * 75) + 1} people
             </span>{" "}
             bought this items and are satisfied about it
@@ -51,7 +51,9 @@ function SimilarProducts(props) {
         </li>
         <li className="border-2 border-black h-20 rounded-md flex gap-4 px-4 py-2 items-center my-3">
           <ElectricBolt sx={{ fontSize: 60 }} />
-          <p>Fast shipping is not available at you region now</p>
+          <p className="lg:text-xl">
+            Fast shipping is not available at you region now
+          </p>
         </li>
       </ul>
     </>

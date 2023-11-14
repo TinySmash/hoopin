@@ -237,10 +237,10 @@ export default function SelectedItem() {
         {addToCartSuccess ? "Added to cart" : "Cart Update Failed"}
       </h1>
       <section className="w-full h-auto min-h-screen lg:flex lg:mt-5 lg:gap-5">
-        <div className="mb-6 md:mt-4 lg:w-1/2">
-          <div className="w-[95%] h-auto sm:h-80 md:h-auto sm:w-auto md:w-3/5 lg:w-[95%] mx-auto md:w-50%  mb-4">
+        <div className="mb-6 relative md:mt-4 lg:w-1/2 lg:h-2/5">
+          <div className="w-[95%] h-auto sm:h-80 md:h-4/5 sm:w-auto md:w-3/5 lg:w-[95%] mx-auto md:w-50%  mb-4">
             <img
-              className="w-full sm:w-auto md:w-full lg:w-4/5 h-auto max-h-80 md:max-h-96 border-[3px] border-black rounded-lg mx-auto p-2 "
+              className="w-full sm:w-auto md:w-full lg:w-4/5 h-auto max-h-80 md:max-h-96 lg:max-h-[472px] xl:max-h-[696px] border-[3px] border-black rounded-lg mx-auto p-2 "
               src={userActions?.productImages?.[0]}
               loading="lazy"
             ></img>
@@ -276,57 +276,65 @@ export default function SelectedItem() {
               dispatch(toggleLikeProduct(Number(id)));
             }}
           />
-          <h1 className="font-bold text-3xl mb-1">{currentProduct?.name}</h1>
-          <div className="bg-primary-gray flex w-fit gap-2 items-center inset-0 rounded-lg backdrop-blur-3xl shadow-md shadow-primary-gray mb-2">
+          <h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl mb-1 lg:mb-4">
+            {currentProduct?.name}
+          </h1>
+          <div className="bg-primary-gray flex w-fit gap-2 items-center inset-0 rounded-lg backdrop-blur-3xl shadow-md shadow-primary-gray mb-2 lg:mb-5">
             <Rating
               name="half-rating-read"
               value={currentProduct?.rating}
               precision={0.1}
               readOnly
             ></Rating>
-            <h1 className="text-lg">{currentProduct?.rating}</h1>
+            <h1 className="text-lg lg:text-xl">{currentProduct?.rating}</h1>
           </div>
-          <h1 className="font-bold text-2xl text-primary-blue mb-2">
+          <h1 className="font-bold text-2xl lg:text-4xl xl:text-5xl text-primary-blue mb-2 lg:mb-5">
             {currentProduct?.price}$
           </h1>
-          <p className="text-lg">{currentProduct?.description}</p>
+          <p className="text-lg lg:text-2xl xl:text-3xl">
+            {currentProduct?.description}
+          </p>
 
           <div className="mt-5">
-            <h1 className="text-primary-blue font-bold text-4xl underline my-3">
+            <h1 className="text-primary-blue font-bold text-4xl lg:text-6xl underline my-3 lg:my-8">
               Get this item
             </h1>
             <div className="w-full h-auto md:flex md:justify-between my-3 pt-3">
               <div className="add-to-cart flex gap-2 w-fit mx-auto mb-3 md:mb-0 items-center">
-                <h1 className="text-2xl font-semibold">Size: </h1>
+                <h1 className="text-2xl font-semibold lg:text-3xl xl:text-4xl">
+                  Size:{" "}
+                </h1>
                 <button
-                  className="bg-primary-gray w-9 h-9 text-4xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
+                  className="bg-primary-gray w-9 h-9 lg:w-14 lg:h-14 text-4xl lg:text-5xl  font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
                   onClick={decrementSize}
                 >
                   -
                 </button>
-                <h1 className="bg-primary-gray w-16 h-9 text-2xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center">
+                <h1 className="bg-primary-gray w-16 h-9 text-2xl lg:w-20 lg:h-14 lg:text-3xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center">
                   {userActions?.pickedSize}
                 </h1>
                 <button
-                  className="bg-primary-gray w-9 h-9 text-4xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
+                  className="bg-primary-gray w-9 h-9 lg:w-14 lg:h-14 text-4xl lg:text-5xl  font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
                   onClick={incrementSize}
                 >
                   +
                 </button>
               </div>
               <div className="add-to-cart flex gap-2 w-fit mx-auto items-center">
-                <h1 className="text-2xl font-semibold">Qty : </h1>
+                <h1 className="text-2xl font-semibold lg:text-3xl xl:text-4xl">
+                  Qty :{" "}
+                </h1>
                 <button
-                  className="bg-primary-gray w-9 h-9 text-4xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
+                  className="bg-primary-gray w-9 h-9 lg:w-14 lg:h-14 text-4xl lg:text-5xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
                   onClick={decrementQty}
                 >
                   -
                 </button>
-                <h1 className="bg-primary-gray w-16 h-9 text-2xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center">
+                <h1 className="bg-primary-gray w-16 h-9 text-2xl lg:w-20 lg:h-14 lg:text-3xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center">
                   {userActions?.pickedQuantity}
                 </h1>
                 <button
-                  className="bg-primary-gray w-9 h-9 text-4xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
+                  className="bg-primary-gray w-9 h-9 lg:w-14 lg:h-14 text-4xl lg:text-5xl font-bold border-4 border-gray-300 shadow-inner-lg text-center rounded-md flex items-center justify-center"
                   onClick={incrementQty}
                 >
                   +
